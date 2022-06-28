@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Services;
 using Services.Interfaces;
+using Utils.Interfaces;
 
 namespace DiplomskiRad.Controllers
 {
@@ -11,12 +12,13 @@ namespace DiplomskiRad.Controllers
     [Route("user")]
     public class UserController :ControllerBase
     {
-
+        private readonly HttpContext _httpContext;
         private readonly IUserService _userService;
 
-        public UserController(IUserService userService)
+        public UserController(IUserService userService, IHttpContextAccessor contextAccessor)
         {
             _userService = userService;
+            _httpContext = contextAccessor.HttpContext;
         }
 
         [HttpPost]
@@ -34,6 +36,29 @@ namespace DiplomskiRad.Controllers
         public async Task<ActionResult<bool>> Registration([FromBody] RegostrationDto user)
         {
             var result = await _userService.Registration(new UserDto(user));
+            return Ok(result);
+        }
+
+        [HttpGet]
+        //[Authorize]
+        [Route("logged-in-user")]
+        public async Task<ActionResult<IUser>> GetLoggedIn()
+        {
+            var userID = _httpContext;
+
+            var result = await _userService.GetLoggedInUser("123");
+
+            return Ok(result);
+        }
+
+        [HttpGet]
+        //[Authorize]
+        [Route("get-all")]
+        public async Task<ActionResult<IUser>> GetAllUsers()
+        {
+
+            var result = await _userService.GetAll();
+
             return Ok(result);
         }
     }

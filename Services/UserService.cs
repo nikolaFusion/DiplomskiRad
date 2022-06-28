@@ -1,7 +1,7 @@
-﻿using Models;
-using Repositories.Interfaces;
+﻿using Repositories.Interfaces;
 using Services.Handlers;
 using Services.Interfaces;
+using Services.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +25,21 @@ namespace Services
             _userRepo = userRepo;
             _userRoleRepo = userRoleRepo;
             _roleRepo = roleRepo;
+        }
+
+        public async Task<List<IUser>> GetAll()
+        {
+            var result = await _userRepo.GetAll();
+
+            return result;
+        }
+
+        public async Task<IUser> GetLoggedInUser(string authorization)
+        {
+            var id = 1;
+            var user = await _userRepo.GetByID(id);
+
+            return user;
         }
 
         public async Task<ITokenModel> Login(IUser model)
@@ -59,13 +74,9 @@ namespace Services
 
             var userID = await _userRepo.Registration(model);
 
-            var userRole = new UserRole
-            {
-                RoleID = roleID,
-                UserID = userID
-            };
+            UserRole userRole = new UserRole(userID, roleID);
 
-            await _userRoleRepo.AddUserRole(userRole);  
+            await _userRoleRepo.AddUserRole(userRole);
 
             return true;
         }

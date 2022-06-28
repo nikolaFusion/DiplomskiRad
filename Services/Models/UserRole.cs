@@ -12,5 +12,11 @@ namespace Services.Models
         public int UserID { get; set; }
 
         public int RoleID { get; set; }
+
+        public UserRole(int userID, int roleID)
+        {
+            UserID = userID;
+            RoleID = roleID;
+        }
     }
 }

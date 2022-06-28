@@ -22,6 +22,20 @@ namespace Repositories
             _context = context;
         }
 
+        public async Task<List<IUser>> GetAll()
+        {
+            var result = await _context.Users.ToListAsync();
+
+            return result.ToList<IUser>();
+        }
+
+        public async Task<IUser> GetByID(int id)
+        {
+            var result = await _context.Users.Where(x => x.UserID == id).FirstOrDefaultAsync();
+
+            return result;
+        }
+
         public async Task<IUser> GetUserByUsername(string username)
         {
             var user = await _context.Users.Where(x => x.Username == username).SingleOrDefaultAsync();

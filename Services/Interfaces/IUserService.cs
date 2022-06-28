@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,5 +12,7 @@ namespace Services.Interfaces
     {
         public Task<ITokenModel> Login(IUser user);
         public Task<bool> Registration(IUser user);
+        Task<IUser> GetLoggedInUser(string authorization);
+        Task<List<IUser>> GetAll();
     }
 }
