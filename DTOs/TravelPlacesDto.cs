@@ -12,12 +12,16 @@ namespace DTOs
         public int TravelPlaceID { get ; set ; }
         public string Name { get ; set; }
         public string Country { get ; set ; }
+        public string ImageUrl { get ; set; }
+        public string Description { get; set; }
 
         public TravelPlacesDto(ITravelPlace place)
         {
             TravelPlaceID = place.TravelPlaceID;
             Name = place.Name;
             Country = place.Country;
+            ImageUrl = place.ImageUrl;
+            Description = place.Description;
         }
     }
 }
