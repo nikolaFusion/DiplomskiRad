@@ -17,6 +17,10 @@ namespace Models.Context
         public DbSet<Permission> Permissions { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<RolePermission> RolePermissions { get; set; }
+        public DbSet<Arrangement> Arrangements { get; set; }
+        public DbSet<TravelPlace> TravelPlaces { get; set; }
+        public DbSet<TravelCompany> TravelCompanies { get; set; }
+        public DbSet<UserArrangement> UserArrangements { get; set; }
 
         public EntityContext(DbContextOptions options) : base(options)
         {
@@ -68,6 +72,34 @@ namespace Models.Context
             modelBuilder.Entity<UserRole>()
                 .HasKey(x => new { x.UserID, x.RoleID });
 
+            modelBuilder.Entity<TravelCompany>()
+                .HasKey(x => x.TravelCompanyID);
+
+            modelBuilder.Entity<TravelPlace>()
+                .HasKey(x => x.TravelPlaceID);
+
+            modelBuilder.Entity<Arrangement>()
+                .HasKey(x =>new { x.ArrangementID,x.TravelCompanyID,x.TravelPlaceID });
+
+            modelBuilder.Entity<TravelCompany>()
+             .HasMany(x => x.Arrangements)
+             .WithOne(x => x.TravelCompany);
+
+            modelBuilder.Entity<TravelPlace>()
+             .HasMany(x => x.Arrangements)
+             .WithOne(x => x.TravelPlace);
+
+            modelBuilder.Entity<UserArrangement>()
+                .HasKey(x => new { x.UserArrangementID, x.UserID, x.ArrangementID });
+
+            modelBuilder.Entity<Arrangement>()
+            .HasMany(x => x.UserArrangements)
+            .WithOne(x => x.Arrangement);
+
+            modelBuilder.Entity<User>()
+             .HasMany(x => x.UserArrangements)
+             .WithOne(x => x.User);
+
         }
 
         public static void InsertDataInTable(ModelBuilder modelBuilder)
@@ -92,6 +124,34 @@ namespace Models.Context
             modelBuilder.Entity<UserRole>().HasData(new UserRole { UserID = 1, RoleID = 1 },
                                                     new UserRole { UserID = 2, RoleID = 1 });
 
+            modelBuilder.Entity<TravelCompany>().HasData(new TravelCompany { TravelCompanyID = 1, Name= "Air Serbia" },
+                                                         new TravelCompany { TravelCompanyID = 2, Name = "Qatar Airways" },
+                                                         new TravelCompany { TravelCompanyID = 3, Name = "Singapore Airlines" },
+                                                         new TravelCompany { TravelCompanyID = 4, Name = "Emirates" },
+                                                         new TravelCompany { TravelCompanyID = 5, Name = "Japan Airlines" },
+                                                         new TravelCompany { TravelCompanyID = 6, Name = "Air France" },
+                                                         new TravelCompany { TravelCompanyID = 7, Name=  "Etihad"});
+
+            modelBuilder.Entity<TravelPlace>().HasData(new TravelPlace { TravelPlaceID = 1, Name = "Kopaonik - Skiing", Country = "Serbia" },
+                                                       new TravelPlace { TravelPlaceID = 2, Name = "Paris - Museum", Country = "France" },
+                                                       new TravelPlace { TravelPlaceID = 3, Name = "Iceland - Country of ice and fire", Country = "Iceland" },
+                                                       new TravelPlace { TravelPlaceID = 4, Name = "Canada - Nature", Country = "Canada" },
+                                                       new TravelPlace { TravelPlaceID = 5, Name = "Norway - aurora borealis", Country = "Norway" },
+                                                       new TravelPlace { TravelPlaceID = 6, Name = "India Jungles", Country = "India" },
+                                                       new TravelPlace { TravelPlaceID = 7, Name = "Australia Jungles", Country = "Australia" },
+                                                       new TravelPlace { TravelPlaceID = 8, Name = "Central Ausralia", Country = "Australia" },
+                                                       new TravelPlace { TravelPlaceID = 9, Name = "Cape of good hope", Country = "South Africa" },
+                                                       new TravelPlace { TravelPlaceID = 10, Name = "Rabat-Cultures of ancient times", Country = "Morocco" },
+                                                       new TravelPlace { TravelPlaceID = 11, Name = "Rio De Janeiro statue", Country = "Brazil" },
+                                                       new TravelPlace { TravelPlaceID = 12, Name = "Cairo piramides", Country = "Egypt" },
+                                                       new TravelPlace { TravelPlaceID = 13, Name = "Beijing culture", Country = "China" },
+                                                       new TravelPlace { TravelPlaceID = 14, Name = "Beauty of Bankok", Country = "Thailand" },
+                                                       new TravelPlace { TravelPlaceID = 15, Name = "Safari South Africa", Country = "South Africa" },
+                                                       new TravelPlace { TravelPlaceID = 16, Name = "Safari Botswana", Country = "Botswana" },
+                                                       new TravelPlace { TravelPlaceID = 17, Name = "Cote d'Azur", Country = "France" },
+                                                       new TravelPlace { TravelPlaceID = 18, Name = "Corida Spain", Country = "Spain" },
+                                                       new TravelPlace { TravelPlaceID = 19, Name = "Terakota warriors", Country = "China" },
+                                                       new TravelPlace { TravelPlaceID = 20, Name = "Australia coalas", Country = "Australia" });
 
         }
 

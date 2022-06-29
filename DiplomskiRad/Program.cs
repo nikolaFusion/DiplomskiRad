@@ -17,8 +17,10 @@ builder.Services.AddDbContext<EntityContext>(x => x.UseNpgsql(builder.Configurat
 builder.Services.AddScoped<IRepositoryUser, RepositoryUser>();
 builder.Services.AddScoped<IRepositoryRole, RepositoryRole>();
 builder.Services.AddScoped<IRepositoryUserRole, RepositoryUserRole>();
+builder.Services.AddScoped<IRepositoryTravelPlaces, RepositoryTravelPlaces>();
 
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<ITravelPlacesService, TravelPlacesService>();
 
 builder.Services.AddSingleton<JwtTokenGenerator>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();

@@ -26,6 +26,8 @@ namespace Models
         public int Age { get; set; }
         [NotMapped]
         public List<UserRole> UserRoles { get; set; }
+        [NotMapped]
+        public List<UserArrangement> UserArrangements { get; set; }
 
         public User()
         {

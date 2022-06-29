@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Models.Context;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Models.Migrations
 {
     [DbContext(typeof(EntityContext))]
-    partial class EntityContextModelSnapshot : ModelSnapshot
+    [Migration("20220629114147_AddedTravelerSide")]
+    partial class AddedTravelerSide
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -170,43 +172,6 @@ namespace Models.Migrations
                     b.HasKey("TravelCompanyID");
 
                     b.ToTable("TravelCompanies");
-
-                    b.HasData(
-                        new
-                        {
-                            TravelCompanyID = 1,
-                            Name = "Air Serbia"
-                        },
-                        new
-                        {
-                            TravelCompanyID = 2,
-                            Name = "Qatar Airways"
-                        },
-                        new
-                        {
-                            TravelCompanyID = 3,
-                            Name = "Singapore Airlines"
-                        },
-                        new
-                        {
-                            TravelCompanyID = 4,
-                            Name = "Emirates"
-                        },
-                        new
-                        {
-                            TravelCompanyID = 5,
-                            Name = "Japan Airlines"
-                        },
-                        new
-                        {
-                            TravelCompanyID = 6,
-                            Name = "Air France"
-                        },
-                        new
-                        {
-                            TravelCompanyID = 7,
-                            Name = "Etihad"
-                        });
                 });
 
             modelBuilder.Entity("Models.TravelPlace", b =>
@@ -228,128 +193,6 @@ namespace Models.Migrations
                     b.HasKey("TravelPlaceID");
 
                     b.ToTable("TravelPlaces");
-
-                    b.HasData(
-                        new
-                        {
-                            TravelPlaceID = 1,
-                            Country = "Serbia",
-                            Name = "Kopaonik - Skiing"
-                        },
-                        new
-                        {
-                            TravelPlaceID = 2,
-                            Country = "France",
-                            Name = "Paris - Museum"
-                        },
-                        new
-                        {
-                            TravelPlaceID = 3,
-                            Country = "Iceland",
-                            Name = "Iceland - Country of ice and fire"
-                        },
-                        new
-                        {
-                            TravelPlaceID = 4,
-                            Country = "Canada",
-                            Name = "Canada - Nature"
-                        },
-                        new
-                        {
-                            TravelPlaceID = 5,
-                            Country = "Norway",
-                            Name = "Norway - aurora borealis"
-                        },
-                        new
-                        {
-                            TravelPlaceID = 6,
-                            Country = "India",
-                            Name = "India Jungles"
-                        },
-                        new
-                        {
-                            TravelPlaceID = 7,
-                            Country = "Australia",
-                            Name = "Australia Jungles"
-                        },
-                        new
-                        {
-                            TravelPlaceID = 8,
-                            Country = "Australia",
-                            Name = "Central Ausralia"
-                        },
-                        new
-                        {
-                            TravelPlaceID = 9,
-                            Country = "South Africa",
-                            Name = "Cape of good hope"
-                        },
-                        new
-                        {
-                            TravelPlaceID = 10,
-                            Country = "Morocco",
-                            Name = "Rabat-Cultures of ancient times"
-                        },
-                        new
-                        {
-                            TravelPlaceID = 11,
-                            Country = "Brazil",
-                            Name = "Rio De Janeiro statue"
-                        },
-                        new
-                        {
-                            TravelPlaceID = 12,
-                            Country = "Egypt",
-                            Name = "Cairo piramides"
-                        },
-                        new
-                        {
-                            TravelPlaceID = 13,
-                            Country = "China",
-                            Name = "Beijing culture"
-                        },
-                        new
-                        {
-                            TravelPlaceID = 14,
-                            Country = "Thailand",
-                            Name = "Beauty of Bankok"
-                        },
-                        new
-                        {
-                            TravelPlaceID = 15,
-                            Country = "South Africa",
-                            Name = "Safari South Africa"
-                        },
-                        new
-                        {
-                            TravelPlaceID = 16,
-                            Country = "Botswana",
-                            Name = "Safari Botswana"
-                        },
-                        new
-                        {
-                            TravelPlaceID = 17,
-                            Country = "France",
-                            Name = "Cote d'Azur"
-                        },
-                        new
-                        {
-                            TravelPlaceID = 18,
-                            Country = "Spain",
-                            Name = "Corida Spain"
-                        },
-                        new
-                        {
-                            TravelPlaceID = 19,
-                            Country = "China",
-                            Name = "Terakota warriors"
-                        },
-                        new
-                        {
-                            TravelPlaceID = 20,
-                            Country = "Australia",
-                            Name = "Australia coalas"
-                        });
                 });
 
             modelBuilder.Entity("Models.User", b =>
