@@ -14,7 +14,6 @@ namespace Utils.Interfaces
         public string Username { get; }
         public string Password { get; }
         public int Age { get; }
-        public Education Education { get; }
 
     }
 }

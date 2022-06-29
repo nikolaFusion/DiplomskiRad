@@ -72,8 +72,8 @@ namespace Models.Context
 
         public static void InsertDataInTable(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().HasData(new User { UserID = 1, FirstName = "Nikola", LastName = "Golubovic", Age = 23, Education = Education.Facultaty, Username="nikola", Password="nikola" },
-                                                new User { UserID = 2, FirstName = "Nenad", LastName = "Golubovic", Age = 23, Education = Education.Facultaty, Username="nenad", Password="nenad" });
+            modelBuilder.Entity<User>().HasData(new User { UserID = 1, FirstName = "Nikola", LastName = "Golubovic", Age = 23, Username="nikola", Password="nikola" },
+                                                new User { UserID = 2, FirstName = "Nenad", LastName = "Golubovic", Age = 23, Username="nenad", Password="nenad" });
 
             modelBuilder.Entity<Role>().HasData(new Role { RoleID = 1, Name = "Administrator" },
                                                 new Role { RoleID = 2, Name = "User" });

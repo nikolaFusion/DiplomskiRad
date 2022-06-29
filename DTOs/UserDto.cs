@@ -21,8 +21,6 @@ namespace DTOs
 
         public int Age { get; set; }
 
-        public Education Education { get; set; }
-
         public UserDto(LoginDto user)
         {
             Username = user.Username;

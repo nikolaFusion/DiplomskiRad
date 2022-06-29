@@ -24,8 +24,6 @@ namespace Models
         public string Password { get; set; }
         [Required]
         public int Age { get; set; }
-        [Required]
-        public Education Education { get; set; }
         [NotMapped]
         public List<UserRole> UserRoles { get; set; }
 
@@ -41,7 +39,6 @@ namespace Models
             Username = user.Username;
             Password = user.Password;
             Age = user.Age;
-            Education = user.Education;
         }
 
     }
