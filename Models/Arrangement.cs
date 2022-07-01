@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -13,12 +14,21 @@ namespace Models
     {
         [Key]
         public int ArrangementID { get; set; }
+        [Required]
+        public DateTime DateStart {get; set; }
         
-        public DateTime Date {get; set; }
+        public DateTime? DateEnd { get; set; }
         [Required]
         public int TravelCompanyID { get; set ; }
         [Required]
         public int TravelPlaceID { get; set; }
+        [Required]
+        public double Price { get; set; }
+        [Required]
+        public int SeatsInArrangement { get; set; }
+        [Required]
+        [DefaultValue("true")]
+        public bool OnlyAirplaneTicket { get; set; }
 
         [NotMapped]
         public TravelCompany TravelCompany { get; set; }

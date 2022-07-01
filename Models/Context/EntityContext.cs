@@ -151,9 +151,14 @@ namespace Models.Context
                                                        new TravelPlace { TravelPlaceID = 17, Name = "Cote d'Azur", Country = "France", ImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEaXji0VkVk3EnKP7UPrS6ZY-FEQOk9W_5Le4VrSEK07Sy9BJB2-v4u1L9Xsq3blTDnUo&usqp=CAU", Description = "" },
                                                        new TravelPlace { TravelPlaceID = 18, Name = "Corida Spain", Country = "Spain", ImageUrl = "https://m.psecn.photoshelter.com/img-get/I0000KM3Tgz.EL9c/s/900/600/bullfighting-corrida-spain-40.jpg", Description = "" },
                                                        new TravelPlace { TravelPlaceID = 19, Name = "Terakota warriors", Country = "China", ImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRg9Bh1GEsvpvMoAKQZMtxLI8v16ormJMHb8z6usd-oj0PPXq5BLCZkKq2qT_YTavgNfd4&usqp=CAU", Description = "" },
-                                                       new TravelPlace { TravelPlaceID = 20, Name = "Australia coalas", Country = "Australia", ImageUrl = "https://media.istockphoto.com/photos/little-girl-hugs-koala-picture-id626145812?k=20&m=626145812&s=612x612&w=0&h=X11Nn3LhtqlVj_fU0YvnWY_NrcrKF--P34k_nZNHzZA=", Description = "" });
+                                                       new TravelPlace { TravelPlaceID = 20, Name = "Australia coalas", Country = "Australia", ImageUrl = "https://media.istockphoto.com/photos/little-girl-hugs-koala-picture-id626145812?k=20&m=626145812&s=612x612&w=0&h=X11Nn3LhtqlVj_fU0YvnWY_NrcrKF--P34k_nZNHzZA=", Description = "" },
+                                                       new TravelPlace { TravelPlaceID = 21, Name = "Belgrade", Country = "Serbia", ImageUrl = "https://images.squarespace-cdn.com/content/v1/59dab4fd8fd4d21d6a6219b3/1508457059277-DQ6HIDC9VDJCVAY7NR4A/belgrade-serbia.jpg?format=2500w", Description = "" });
 
+
+            modelBuilder.Entity<Arrangement>().HasData(new Arrangement { ArrangementID = 1, TravelCompanyID = 2, TravelPlaceID = 4, DateStart = new DateTime(2022, 9, 19, 12, 0, 0), DateEnd = new DateTime(2022, 9, 21, 12, 0, 0), Price = 123.22, SeatsInArrangement = 10, OnlyAirplaneTicket = false },
+                                                       new Arrangement { ArrangementID = 2, TravelCompanyID = 4, TravelPlaceID = 3, DateStart = new DateTime(2022, 9, 21, 17, 0, 0), DateEnd = new DateTime(2022, 9, 24, 12, 0, 0), Price = 117.99, SeatsInArrangement = 10, OnlyAirplaneTicket = false },
+                                                       new Arrangement { ArrangementID = 3, TravelCompanyID = 7, TravelPlaceID = 5, DateStart = new DateTime(2022, 9, 24, 17, 0, 0), DateEnd = new DateTime(2022, 9, 27, 12, 0, 0), Price = 126.12, SeatsInArrangement = 10, OnlyAirplaneTicket = false },
+                                                       new Arrangement { ArrangementID = 4, TravelCompanyID = 1, TravelPlaceID = 21, DateStart = new DateTime(2022, 9, 27, 12, 0, 0), DateEnd = null, Price = 72.32, SeatsInArrangement = 10, OnlyAirplaneTicket = true }) ;
         }
-
     }
 }
