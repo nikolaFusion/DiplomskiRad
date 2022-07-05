@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Models.Context;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Models.Migrations
 {
     [DbContext(typeof(EntityContext))]
-    partial class EntityContextModelSnapshot : ModelSnapshot
+    [Migration("20220705110701_AddedMoreArrangenmatns")]
+    partial class AddedMoreArrangenmatns
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -108,7 +110,7 @@ namespace Models.Migrations
                             DateEnd = new DateTime(2022, 9, 21, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             DateStart = new DateTime(2022, 9, 19, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             OnlyAirplaneTicket = false,
-                            Price = 223.22,
+                            Price = 123.22,
                             SeatsInArrangement = 10
                         },
                         new
@@ -119,7 +121,7 @@ namespace Models.Migrations
                             DateEnd = new DateTime(2022, 9, 24, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             DateStart = new DateTime(2022, 9, 21, 17, 0, 0, 0, DateTimeKind.Unspecified),
                             OnlyAirplaneTicket = false,
-                            Price = 217.99000000000001,
+                            Price = 117.98999999999999,
                             SeatsInArrangement = 10
                         },
                         new
@@ -130,7 +132,7 @@ namespace Models.Migrations
                             DateEnd = new DateTime(2022, 9, 27, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             DateStart = new DateTime(2022, 9, 24, 17, 0, 0, 0, DateTimeKind.Unspecified),
                             OnlyAirplaneTicket = false,
-                            Price = 226.12,
+                            Price = 126.12,
                             SeatsInArrangement = 10
                         },
                         new
@@ -140,7 +142,80 @@ namespace Models.Migrations
                             TravelPlaceID = 21,
                             DateStart = new DateTime(2022, 9, 27, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             OnlyAirplaneTicket = true,
-                            Price = 272.31999999999999,
+                            Price = 72.319999999999993,
+                            SeatsInArrangement = 10
+                        },
+                        new
+                        {
+                            ArrangementID = 9,
+                            TravelCompanyID = 2,
+                            TravelPlaceID = 4,
+                            DateEnd = new DateTime(2022, 9, 21, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateStart = new DateTime(2022, 9, 19, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            OnlyAirplaneTicket = false,
+                            Price = 123.22,
+                            SeatsInArrangement = 10
+                        },
+                        new
+                        {
+                            ArrangementID = 10,
+                            TravelCompanyID = 4,
+                            TravelPlaceID = 3,
+                            DateEnd = new DateTime(2022, 9, 24, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateStart = new DateTime(2022, 9, 21, 17, 0, 0, 0, DateTimeKind.Unspecified),
+                            OnlyAirplaneTicket = false,
+                            Price = 117.98999999999999,
+                            SeatsInArrangement = 10
+                        },
+                        new
+                        {
+                            ArrangementID = 11,
+                            TravelCompanyID = 7,
+                            TravelPlaceID = 5,
+                            DateEnd = new DateTime(2022, 9, 27, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateStart = new DateTime(2022, 9, 24, 17, 0, 0, 0, DateTimeKind.Unspecified),
+                            OnlyAirplaneTicket = false,
+                            Price = 126.12,
+                            SeatsInArrangement = 10
+                        },
+                        new
+                        {
+                            ArrangementID = 12,
+                            TravelCompanyID = 1,
+                            TravelPlaceID = 21,
+                            DateStart = new DateTime(2022, 9, 27, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            OnlyAirplaneTicket = true,
+                            Price = 72.319999999999993,
+                            SeatsInArrangement = 10
+                        },
+                        new
+                        {
+                            ArrangementID = 13,
+                            TravelCompanyID = 2,
+                            TravelPlaceID = 21,
+                            DateStart = new DateTime(2022, 9, 27, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            OnlyAirplaneTicket = false,
+                            Price = 45.460000000000001,
+                            SeatsInArrangement = 10
+                        },
+                        new
+                        {
+                            ArrangementID = 14,
+                            TravelCompanyID = 4,
+                            TravelPlaceID = 21,
+                            DateStart = new DateTime(2022, 9, 27, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            OnlyAirplaneTicket = false,
+                            Price = 48.780000000000001,
+                            SeatsInArrangement = 10
+                        },
+                        new
+                        {
+                            ArrangementID = 15,
+                            TravelCompanyID = 1,
+                            TravelPlaceID = 21,
+                            DateStart = new DateTime(2022, 9, 27, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            OnlyAirplaneTicket = false,
+                            Price = 87.450000000000003,
                             SeatsInArrangement = 10
                         });
                 });

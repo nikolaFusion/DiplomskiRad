@@ -159,6 +159,13 @@ namespace Models.Context
                                                        new Arrangement { ArrangementID = 2, TravelCompanyID = 4, TravelPlaceID = 3, DateStart = new DateTime(2022, 9, 21, 17, 0, 0), DateEnd = new DateTime(2022, 9, 24, 12, 0, 0), Price = 117.99, SeatsInArrangement = 10, OnlyAirplaneTicket = false },
                                                        new Arrangement { ArrangementID = 3, TravelCompanyID = 7, TravelPlaceID = 5, DateStart = new DateTime(2022, 9, 24, 17, 0, 0), DateEnd = new DateTime(2022, 9, 27, 12, 0, 0), Price = 126.12, SeatsInArrangement = 10, OnlyAirplaneTicket = false },
                                                        new Arrangement { ArrangementID = 4, TravelCompanyID = 1, TravelPlaceID = 21, DateStart = new DateTime(2022, 9, 27, 12, 0, 0), DateEnd = null, Price = 72.32, SeatsInArrangement = 10, OnlyAirplaneTicket = true }) ;
+
+            modelBuilder.Entity<Arrangement>().HasData(new Arrangement { ArrangementID = 5, TravelCompanyID = 2, TravelPlaceID = 4, DateStart = new DateTime(2022, 9, 19, 12, 0, 0), DateEnd = new DateTime(2022, 9, 21, 12, 0, 0), Price = 223.22, SeatsInArrangement = 10, OnlyAirplaneTicket = false },
+                                                      new Arrangement { ArrangementID = 6, TravelCompanyID = 4, TravelPlaceID = 3, DateStart = new DateTime(2022, 9, 21, 17, 0, 0), DateEnd = new DateTime(2022, 9, 24, 12, 0, 0), Price = 217.99, SeatsInArrangement = 10, OnlyAirplaneTicket = false },
+                                                      new Arrangement { ArrangementID = 7, TravelCompanyID = 7, TravelPlaceID = 5, DateStart = new DateTime(2022, 9, 24, 17, 0, 0), DateEnd = new DateTime(2022, 9, 27, 12, 0, 0), Price = 226.12, SeatsInArrangement = 10, OnlyAirplaneTicket = false },
+                                                      new Arrangement { ArrangementID = 8, TravelCompanyID = 1, TravelPlaceID = 21, DateStart = new DateTime(2022, 9, 27, 12, 0, 0), DateEnd = null, Price =272.32, SeatsInArrangement = 10, OnlyAirplaneTicket = true });
+
+            
         }
     }
 }

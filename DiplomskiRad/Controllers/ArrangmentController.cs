@@ -21,7 +21,10 @@ namespace DiplomskiRad.Controllers
         [Route("find-arrangments")]
         public async Task<List<List<IArrangement>>> GetFindingArr([FromBody] FindGroupArrDto model)
         {
-            var listOfFindingPlaces =  await _arrangmentService.GetFindingArr(model.TravelPlaceList,model.StartDate,model.EndDate,model.NumberOfPeople);
+            var start = new DateTime(model.StartDate.Year, model.StartDate.Month, model.StartDate.Day+1);
+            var end = new DateTime(model.EndDate.Year, model.EndDate.Month, model.EndDate.Day+1);
+
+            var listOfFindingPlaces =  await _arrangmentService.GetFindingArr(model.TravelPlaceList,start,end,model.NumberOfPeople);
 
             return listOfFindingPlaces;              
         }

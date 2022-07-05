@@ -21,91 +21,100 @@ namespace Services
         public async  Task<List<List<IArrangement>>> GetFindingArr(List<int> travelPlaceList, DateTime startDate, DateTime? endDate, int numberOfPeople)
         {
 
-            List<List<IArrangement>> matrix = new List<List<IArrangement>>();
-
-            var numberOfPlaces = travelPlaceList.Count();
+            var numberOfPlaces = travelPlaceList.Count;
 
             if (numberOfPlaces == 0)
             {
                 return null;
             }
 
-            matrix = await getAllAppropriateArr(matrix, travelPlaceList, startDate, endDate, numberOfPeople);
+            var matrix = await getAllAppropriateArr(null, travelPlaceList, startDate, endDate, numberOfPeople);
 
             return matrix;
             
         }
 
-        private async Task<List<List<IArrangement>>> getAllAppropriateArr(List<List<IArrangement>> matrix,List<int> travelPlaceList, DateTime startDate, DateTime? endDate, int numberOfPeople, bool last=false)
+        private async Task<List<List<IArrangement>>> getAllAppropriateArr(List<IArrangement> list,
+                                                                                 List<int> travelPlaceList,
+                                                                                 DateTime startDate,
+                                                                                 DateTime? endDate,
+                                                                                 int numberOfPeople,
+                                                                                 bool last = false)
         {
 
-            var numberOfPlaces = travelPlaceList.Count();
-
-            if (numberOfPlaces == 0)
+            List<List<IArrangement>> endMatrix = new List<List<IArrangement>>();
+            if (travelPlaceList.Count == 1)
             {
-                return matrix;
-            }
+                var result=await _repositoryArrangment.GetBeforeEndDate(travelPlaceList[0],startDate,endDate,numberOfPeople,true);
 
-            if (numberOfPlaces == 1)
-            {
-                last = true;
-            }
+                List<List<IArrangement>> matrix = new List<List<IArrangement>>();
 
-            var newMatrix = new List<List<IArrangement>>();
-
-            if (matrix.Count() == 0)
-            {
-                foreach (var place in travelPlaceList)
+                foreach(var res in result)
                 {
-                    var result =  await _repositoryArrangment.GetBeforeEndDate(place, startDate, endDate, numberOfPeople,last);
+                    List<IArrangement> newList = new List<IArrangement>();
 
-                    foreach (var arr in result)
+                    if (list != null)
                     {
-                        var newList = new List<IArrangement>();
-
-                        newList.Add(arr);
-                        newMatrix.Add(newList);
-
-                        travelPlaceList.Remove(place);
-                        await  getAllAppropriateArr(newMatrix, travelPlaceList, (DateTime) arr.DateEnd, endDate, numberOfPeople);
-                    }
-                }
-            }
-
-            if (numberOfPlaces != 0)
-            {
-
-                foreach (List<IArrangement> itemList in matrix)
-                {
-                    foreach (var place in travelPlaceList)
-                    {
-                        var result = await _repositoryArrangment.GetBeforeEndDate(place, startDate, endDate, numberOfPeople,last);
-
-                        foreach (var arr in result)
+                        foreach (var item in list)
                         {
-                            var newList = new List<IArrangement>();
-
-                            foreach (var itemArrList in itemList)
-                            {
-                                newList.Add(itemArrList);
-                            }
-
-                            newList.Add(arr);
-                            newMatrix.Add(newList);
-
-                            travelPlaceList.Remove(place);
-
-                            if (arr.DateEnd == null)
-                            {
-                                arr.DateEnd = new DateTime();
-                            }
-
-                            await getAllAppropriateArr(newMatrix, travelPlaceList, (DateTime)arr.DateEnd, endDate, numberOfPeople,last);
+                            newList.Add(item);
                         }
                     }
+
+                    newList.Add(res);
+                    matrix.Add(newList);
+                }
+                return matrix;
+            }
+
+            foreach(var item in travelPlaceList)
+            {
+                var result = await _repositoryArrangment.GetBeforeEndDate(item, startDate, endDate, numberOfPeople, false);
+
+                List<List<IArrangement>> matrix = new List<List<IArrangement>>();
+
+                foreach (var res in result)
+                {
+                    List<IArrangement> newList = new List<IArrangement>();
+
+                    if (list != null)
+                    {
+                        foreach (var arrang in list)
+                        {
+                            newList.Add(arrang);
+                        }
+                    }
+
+                    newList.Add(res);
+                    matrix.Add(newList);
+
+                    List<int> newTravelPlaceList = new List<int>();
+
+                    foreach (var x in travelPlaceList)
+                    {
+                        if (x != item)
+                        {
+                            newTravelPlaceList.Add(x);
+                        }
+                    }
+
+                    foreach (List<IArrangement> arr in matrix)
+                    {
+                        var m = await getAllAppropriateArr(arr, newTravelPlaceList, arr.Last().DateEnd ?? DateTime.Now, endDate, numberOfPeople, false);
+
+                        foreach (List<IArrangement> v in m)
+                        {
+                            endMatrix.Add(v);
+                        }
+                    }
+
+                    matrix = new List<List<IArrangement>>();
                 }
             }
-                return matrix;
+
+
+            return endMatrix;
         }
+
     }
 }
