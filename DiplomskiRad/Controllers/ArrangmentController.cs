@@ -19,7 +19,7 @@ namespace DiplomskiRad.Controllers
 
         [HttpPost]
         [Route("find-arrangments")]
-        public async Task<List<List<IArrangement>>> GetFindingArr([FromBody] FindGroupArrDto model)
+        public async Task<List<IArrangementGroup>> GetFindingArr([FromBody] FindGroupArrDto model)
         {
             var start = new DateTime(model.StartDate.Year, model.StartDate.Month, model.StartDate.Day+1);
             var end = new DateTime(model.EndDate.Year, model.EndDate.Month, model.EndDate.Day+1);

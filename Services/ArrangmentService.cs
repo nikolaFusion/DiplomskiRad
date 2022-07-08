@@ -18,7 +18,7 @@ namespace Services
         {
             _repositoryArrangment = repositoryArrangment;
         }
-        public async  Task<List<List<IArrangement>>> GetFindingArr(List<int> travelPlaceList, DateTime startDate, DateTime? endDate, int numberOfPeople)
+        public async  Task<List<IArrangementGroup>> GetFindingArr(List<int> travelPlaceList, DateTime startDate, DateTime? endDate, int numberOfPeople)
         {
 
             var numberOfPlaces = travelPlaceList.Count;
@@ -30,7 +30,22 @@ namespace Services
 
             var matrix = await getAllAppropriateArr(null, travelPlaceList, startDate, endDate, numberOfPeople);
 
-            return matrix;
+            var argumentGroups = new List<ArrangementGroup>();
+
+            foreach(var row in matrix)
+            {
+                var arrGroup = new ArrangementGroup();
+                var listArr = new List<Arrangement>();
+                foreach(var item in row)
+                {
+                    arrGroup.Price+=item.Price;
+                    listArr.Add(new Arrangement(item));
+                }
+                arrGroup.Arrangements = listArr;
+                argumentGroups.Add(arrGroup);
+            }
+
+            return argumentGroups.ToList<IArrangementGroup>();
             
         }
 

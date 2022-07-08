@@ -17,7 +17,7 @@ namespace Services
         private readonly IRepositoryUser _userRepo;
         private readonly IRepositoryRole _roleRepo;
         private readonly IRepositoryUserRole _userRoleRepo;
-        private readonly JwtTokenGenerator _tokenGenerator=new JwtTokenGenerator();
+        private readonly JwtTokenGenerator _tokenGenerator;
 
         public UserService(IRepositoryUser userRepo, JwtTokenGenerator tokenGenerator, IRepositoryUserRole userRoleRepo, IRepositoryRole roleRepo)
         {

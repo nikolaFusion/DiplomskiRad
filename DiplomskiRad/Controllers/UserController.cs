@@ -35,8 +35,8 @@ namespace DiplomskiRad.Controllers
         [Route("registration")]
         public async Task<ActionResult<bool>> Registration([FromBody] RegostrationDto user)
         {
-            var result = await _userService.Registration(new UserDto(user));
-            return Ok(result);
+            await _userService.Registration(new UserDto(user));
+            return Ok(true);
         }
 
         [HttpGet]

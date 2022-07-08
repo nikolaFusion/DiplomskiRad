@@ -8,13 +8,17 @@ namespace Utils.Interfaces
 {
     public interface IArrangement
     {
-        public int ArrangementID { get; set; }
-        public int TravelCompanyID { get; set; }
-        public int TravelPlaceID { get; set; }
-        public DateTime DateStart { get; set; }
-        public DateTime? DateEnd { get; set; }
-        public double Price { get; set; }
-        public int SeatsInArrangement { get; set; }
-        public bool OnlyAirplaneTicket { get; set; }
+        public int ArrangementID { get; }
+        public int TravelCompanyID { get; }
+        public int TravelPlaceID { get; }
+        public int StartPlaceID { get; }
+        public DateTime DateStart { get; }
+        public DateTime? DateEnd { get; }
+        public double Price { get; }
+        public int SeatsInArrangement { get; }
+        public bool OnlyAirplaneTicket { get; }
+        public ITravelCompany TravelCompany { get; }
+        public ITravelPlace TravelPlace { get; }
+
     }
 }

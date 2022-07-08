@@ -27,6 +27,8 @@ namespace Repositories
                                                                          && x.DateStart.Month == startDate.Month
                                                                           && x.DateStart.Year == startDate.Year
                                                                         && x.SeatsInArrangement >= numberOfPeople)
+                                                                              .Include(x=>x.TravelPlace)
+                                                                              .Include(x=>x.TravelCompany)
                                                                               .ToListAsync();
                 return res.ToList<IArrangement>();
             }
@@ -37,6 +39,8 @@ namespace Repositories
                                                             && x.DateStart.Year == startDate.Year
                                                            && x.DateEnd <= endDate
                                                           && x.SeatsInArrangement >= numberOfPeople)
+                                                                  .Include(x => x.TravelPlace)
+                                                                  .Include(x => x.TravelCompany)
                                                                 .ToListAsync();
             return result.ToList<IArrangement>();
         }

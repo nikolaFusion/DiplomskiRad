@@ -35,8 +35,13 @@ namespace Models
         [NotMapped]
         public  TravelPlace TravelPlace { get; set; }
         [NotMapped]
+        public TravelPlace StartPlace { get; set; }
+        [NotMapped]
         public List<UserArrangement> UserArrangements { get; set; }
+        public int StartPlaceID { get ; set ; }
 
+        ITravelCompany IArrangement.TravelCompany => TravelCompany;
 
+        ITravelPlace IArrangement.TravelPlace => TravelPlace;
     }
 }
