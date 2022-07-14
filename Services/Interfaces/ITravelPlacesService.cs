@@ -10,5 +10,6 @@ namespace Services.Interfaces
     public interface ITravelPlacesService
     {
         Task<List<ITravelPlace>> GetAll();
+        Task<List<ITravelPlace>> FindByValue(string searchValue);
     }
 }

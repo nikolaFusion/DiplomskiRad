@@ -1,5 +1,4 @@
 ﻿using Repositories.Interfaces;
-using Services.Handlers;
 using Services.Interfaces;
 using Services.Models;
 using System;
@@ -8,7 +7,11 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Utils.ErrorModels;
+using Utils.Handlers;
 using Utils.Interfaces;
+using Utils.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace Services
 {
@@ -18,28 +21,44 @@ namespace Services
         private readonly IRepositoryRole _roleRepo;
         private readonly IRepositoryUserRole _userRoleRepo;
         private readonly JwtTokenGenerator _tokenGenerator;
+        private readonly HttpContext _httpContext;
 
-        public UserService(IRepositoryUser userRepo, JwtTokenGenerator tokenGenerator, IRepositoryUserRole userRoleRepo, IRepositoryRole roleRepo)
+        public UserService(IHttpContextAccessor contextAccessor,IRepositoryUser userRepo, JwtTokenGenerator tokenGenerator, IRepositoryUserRole userRoleRepo, IRepositoryRole roleRepo)
         {
             _tokenGenerator = tokenGenerator;
             _userRepo = userRepo;
             _userRoleRepo = userRoleRepo;
+            _httpContext = contextAccessor.HttpContext;
             _roleRepo = roleRepo;
         }
 
         public async Task<List<IUser>> GetAll()
         {
-            var result = await _userRepo.GetAll();
+            try
+            {
+                var result = await _userRepo.GetAll();
 
-            return result;
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw new BadRequestError("Cannot find all users");
+            }
         }
 
-        public async Task<IUser> GetLoggedInUser(string authorization)
+        public async Task<IUser> GetLoggedInUser()
         {
-            var id = 1;
-            var user = await _userRepo.GetByID(id);
+            try
+            {
+                var id=_httpContext.User.Claims.FirstOrDefault().Value;
+                var user = await _userRepo.GetByID(Int32.Parse(id));
+                return user;
+            }
+            catch(Exception ex)
+            {
+                throw new UnautorizedError("Cannot find user with this param");
+            }
 
-            return user;
         }
 
         public async Task<ITokenModel> Login(IUser model)
@@ -56,7 +75,12 @@ namespace Services
                 new Claim("username", model.Username)
             };
 
-            var token = _tokenGenerator.GetToken(authClaims);
+            var jwtToken = _tokenGenerator.Generate(user);
+
+            var token = new TokenModel
+            {
+                JWTToken = jwtToken
+            };
 
             return token;
         }
@@ -65,6 +89,11 @@ namespace Services
         {
             var existingUser = await _userRepo.GetUserByUsername(model.Username);
 
+            if (existingUser == null)
+            {
+                throw new UnautorizedError("Cannot find user");
+            }
+
             if (existingUser != null)
             {
                 return false;
@@ -72,11 +101,28 @@ namespace Services
 
             var roleID = await _roleRepo.GetRoleIdByName("User");
 
+            if (roleID == null)
+            {
+                throw new UnautorizedError("Cannot find role with this name");
+            }
+
             var userID = await _userRepo.Registration(model);
+
+            if (userID == null)
+            {
+                throw new UnautorizedError("Cannot register user with this id");
+            }
 
             UserRole userRole = new UserRole(userID, roleID);
 
-            await _userRoleRepo.AddUserRole(userRole);
+            try
+            {
+                await _userRoleRepo.AddUserRole(userRole);
+            }
+            catch(Exception ex)
+            {
+                throw new BadRequestError("Cannot save user role");
+            }
 
             return true;
         }

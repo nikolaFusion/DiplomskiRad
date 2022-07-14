@@ -35,5 +35,10 @@ namespace DTOs
             FirstName = user.FirstName;
             Age = user.Age;
         }
+
+        public UserDto()
+        {
+
+        }
     }
 }

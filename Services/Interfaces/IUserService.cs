@@ -12,7 +12,7 @@ namespace Services.Interfaces
     {
         public Task<ITokenModel> Login(IUser user);
         public Task<bool> Registration(IUser user);
-        Task<IUser> GetLoggedInUser(string authorization);
+        Task<IUser> GetLoggedInUser();
         Task<List<IUser>> GetAll();
     }
 }

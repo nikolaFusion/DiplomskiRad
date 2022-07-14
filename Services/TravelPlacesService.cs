@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Utils.ErrorModels;
 using Utils.Interfaces;
 
 namespace Services
@@ -16,10 +17,37 @@ namespace Services
         {
             _repoTravelPlace = repoTravelPlace;
         }
+
+        public async Task<List<ITravelPlace>> FindByValue(string searchValue)
+        {
+            if(searchValue == null)
+            {
+                var list = await GetAll();
+
+            }
+
+            try
+            {
+                var result = await _repoTravelPlace.FindByValue(searchValue);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw new BadRequestError("Cannot return all travel places");
+            }
+        }
+
         public async Task<List<ITravelPlace>> GetAll()
         {
-            var result = await _repoTravelPlace.GetAll();
-            return result;
+            try
+            {
+                var result = await _repoTravelPlace.GetAll();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw new BadRequestError("Cannot return all travel places");
+            }
         }
     }
 }

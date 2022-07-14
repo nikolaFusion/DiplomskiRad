@@ -27,13 +27,5 @@ namespace Models
         {
 
         }
-
-        public ArrangementGroup(IArrangementGroup arrangementGroup)
-        {
-            ArrangementGroupID= arrangementGroup.ArrangementGroupID;
-            ArrangementsIDs = arrangementGroup.ArrangementsIDs;
-            Price = arrangementGroup.Price;
-            Arrangements = arrangementGroup.Arrangements;
-        }
     }
 }

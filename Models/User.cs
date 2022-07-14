@@ -33,15 +33,6 @@ namespace Models
         {
         }
 
-        public User(IUser user)
-        {
-            UserID=user.UserID;
-            FirstName = user.FirstName;
-            LastName = user.LastName;
-            Username = user.Username;
-            Password = user.Password;
-            Age = user.Age;
-        }
 
     }
 }

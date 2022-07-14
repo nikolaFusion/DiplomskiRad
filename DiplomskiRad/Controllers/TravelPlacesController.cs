@@ -1,4 +1,5 @@
 ﻿using DTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Services.Interfaces;
@@ -28,7 +29,16 @@ namespace DiplomskiRad.Controllers
             return list;
         }
 
+        [HttpGet]
+        [Route("find-place/{searchValue}")]
+        public async Task<ActionResult<List<TravelPlacesDto>>> GetFindPlaces(string searchValue)
+        {
+            var result = await _travelService.FindByValue(searchValue);
 
+            var list = result.Select(x => new TravelPlacesDto(x)).ToList();
+
+            return list;
+        }
     }
 }
 

@@ -1,4 +1,5 @@
-﻿using Models;
+﻿using AutoMapper;
+using Models;
 using Models.Context;
 using Repositories.Interfaces;
 using System;
@@ -13,22 +14,18 @@ namespace Repositories
     public class RepositoryUserRole : IRepositoryUserRole
     {
         private readonly EntityContext _context;
-        public RepositoryUserRole(EntityContext context)
+        private readonly IMapper _mapper;
+        public RepositoryUserRole(EntityContext context,IMapper mapper)
         {
+            _mapper = mapper;
             _context = context;
         }
         public async Task<bool> AddUserRole(IUserRole userRole)
         {
-            _context.UserRoles.AddAsync(new UserRole(userRole));
+            _context.UserRoles.AddAsync(_mapper.Map<UserRole>(userRole));
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch(Exception ex)
-            {
+            await _context.SaveChangesAsync();
 
-            }
             return true;
         }
     }

@@ -1,13 +1,21 @@
+using AutoMapper;
+using DiplomskiRad.Middlewares;
 using DocumentFormat.OpenXml.EMMA;
+using DTOs;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Models;
 using Models.Context;
 using Repositories;
 using Repositories.Interfaces;
 using Services;
-using Services.Handlers;
 using Services.Interfaces;
 using System.Reflection;
+using System.Text;
+using Utils.Handlers;
+using Utils.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,36 +43,68 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSwaggerGen(c =>
+builder.Services.AddSwaggerGen(opt =>
 {
-    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    opt.SwaggerDoc("v1", new OpenApiInfo { Title = "MyAPI", Version = "v1" });
+    opt.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
-        Description = @"Bearer {token}",
-        Name = "Authorization",
         In = ParameterLocation.Header,
-        Type = SecuritySchemeType.ApiKey,
-        Scheme = "Bearer"
+        Description = "Please enter token",
+        Name = "Authorization",
+        Type = SecuritySchemeType.Http,
+        BearerFormat = "JWT",
+        Scheme = "bearer"
     });
-
-    c.AddSecurityRequirement(new OpenApiSecurityRequirement()
-      {
+    opt.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
         {
-          new OpenApiSecurityScheme
-          {
-            Reference = new OpenApiReference
-              {
-                Type = ReferenceType.SecurityScheme,
-                Id = "Bearer"
-              },
-              Scheme = "oauth2",
-              Name = "Bearer",
-              In = ParameterLocation.Header,
-
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type=ReferenceType.SecurityScheme,
+                    Id="Bearer"
+                }
             },
             new List<string>()
-          }
-        });
+        }
+    });
 });
+
+var profileList=new List<Profile>();
+profileList.Add(new ServicesAutoMapperProfile());
+profileList.Add(new UtilsMapperProfile());
+profileList.Add(new AutoMapperDto());
+profileList.Add(new ModelsAutoMapperProfile());
+
+var config = new MapperConfiguration(cfg =>
+{
+    cfg.AddProfiles(profileList);
+});
+var mapper = config.CreateMapper();
+builder.Services.AddSingleton(mapper);
+
+
+
+
+builder.Services.AddAuthentication(obj =>
+{
+    obj.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    obj.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    obj.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(jwtOptions =>
+    {
+        jwtOptions.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+        };
+    });
 
 var app = builder.Build();
 
@@ -75,12 +115,16 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.ConfigureExceptionHandler();
+
 app.UseHttpsRedirection();
 
 app.UseCors(x => x
     .AllowAnyOrigin()
     .AllowAnyMethod()
     .AllowAnyHeader());
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

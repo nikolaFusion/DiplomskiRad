@@ -1,4 +1,5 @@
-﻿using DTOs;
+﻿using AutoMapper;
+using DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Services;
@@ -14,11 +15,13 @@ namespace DiplomskiRad.Controllers
     {
         private readonly HttpContext _httpContext;
         private readonly IUserService _userService;
+        private readonly IMapper _mapper;
 
-        public UserController(IUserService userService, IHttpContextAccessor contextAccessor)
+        public UserController(IUserService userService, IHttpContextAccessor contextAccessor,IMapper mapper)
         {
             _userService = userService;
             _httpContext = contextAccessor.HttpContext;
+            _mapper = mapper;
         }
 
         [HttpPost]
@@ -40,19 +43,18 @@ namespace DiplomskiRad.Controllers
         }
 
         [HttpGet]
-        //[Authorize]
+        [Authorize]
         [Route("logged-in-user")]
-        public async Task<ActionResult<IUser>> GetLoggedIn()
+        public async Task<ActionResult<UserDto>> GetLoggedIn()
         {
-            var userID = _httpContext;
+            var result = await _userService.GetLoggedInUser();
 
-            var result = await _userService.GetLoggedInUser("123");
+            var user = _mapper.Map<UserDto>(result);
 
-            return Ok(result);
+            return Ok(user);
         }
 
         [HttpGet]
-        //[Authorize]
         [Route("get-all")]
         public async Task<ActionResult<IUser>> GetAllUsers()
         {
@@ -61,5 +63,6 @@ namespace DiplomskiRad.Controllers
 
             return Ok(result);
         }
+
     }
 }

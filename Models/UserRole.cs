@@ -25,10 +25,5 @@ namespace Models
 
         }
 
-        public UserRole(IUserRole userRole)
-        {
-            RoleID = userRole.RoleID;
-            UserID = userRole.UserID;
-        }
     }
 }

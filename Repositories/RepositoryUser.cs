@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Models;
 using Models.Context;
 using Repositories.Interfaces;
@@ -16,9 +17,11 @@ namespace Repositories
     public class RepositoryUser : IRepositoryUser
     {
         private readonly EntityContext _context;
+        private readonly IMapper _mapper;
 
-        public RepositoryUser(EntityContext context)
+        public RepositoryUser(EntityContext context,IMapper mapper)
         {
+            _mapper = mapper;
             _context = context;
         }
 
@@ -54,7 +57,7 @@ namespace Repositories
 
         public async Task<int> Registration(IUser model)
         {
-            var user = new User(model);
+            var user = _mapper.Map<User>(model);
 
             await _context.Users.AddAsync(user);
             await _context.SaveChangesAsync();

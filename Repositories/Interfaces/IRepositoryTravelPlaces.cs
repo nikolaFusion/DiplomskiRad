@@ -10,5 +10,6 @@ namespace Repositories.Interfaces
     public interface IRepositoryTravelPlaces
     {
         Task<List<ITravelPlace>> GetAll();
+        Task<List<ITravelPlace>> FindByValue(string? searchValue);
     }
 }

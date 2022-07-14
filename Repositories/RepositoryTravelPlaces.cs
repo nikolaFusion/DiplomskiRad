@@ -18,6 +18,13 @@ namespace Repositories
         {
             _context = context;
         }
+
+        public async Task<List<ITravelPlace>> FindByValue(string? searchValue)
+        {
+            var result = await _context.TravelPlaces.Where(x => x.Name.ToLower().Contains(searchValue.ToLower()) || x.Country.ToLower().Contains(searchValue.ToLower())).ToListAsync();
+            return result.ToList<ITravelPlace>(); ;
+        }
+
         public async Task<List<ITravelPlace>> GetAll()
         {
             var result= await _context.TravelPlaces.ToListAsync();

@@ -1,4 +1,5 @@
 ﻿
+using AutoMapper;
 using Repositories.Interfaces;
 using Services.Interfaces;
 using Services.Models;
@@ -7,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Utils.ErrorModels;
 using Utils.Interfaces;
 
 namespace Services
@@ -14,10 +16,28 @@ namespace Services
     public class ArrangmentService : IArrangmentService
     {
         private readonly IRepositoryArrangment _repositoryArrangment;
-        public ArrangmentService(IRepositoryArrangment repositoryArrangment)
+        private readonly IMapper _mapper;
+        public ArrangmentService(IRepositoryArrangment repositoryArrangment, IMapper mapper)
         {
             _repositoryArrangment = repositoryArrangment;
+            _mapper = mapper;
         }
+
+        public Task<List<IArrangementGroup>> GetArrangementByID(string travelPlaceId)
+        {
+            int ID;
+
+            bool succesfullParsing=Int32.TryParse(travelPlaceId, out ID);
+
+            if (!succesfullParsing)
+            {
+                throw new BadRequestError("Cant parse travel place id to int");
+            }
+
+            throw new Exception();
+
+        }
+
         public async  Task<List<IArrangementGroup>> GetFindingArr(List<int> travelPlaceList, DateTime startDate, DateTime? endDate, int numberOfPeople)
         {
 
@@ -28,24 +48,35 @@ namespace Services
                 return null;
             }
 
-            var matrix = await getAllAppropriateArr(null, travelPlaceList, startDate, endDate, numberOfPeople);
-
-            var argumentGroups = new List<ArrangementGroup>();
-
-            foreach(var row in matrix)
+            try
             {
-                var arrGroup = new ArrangementGroup();
-                var listArr = new List<Arrangement>();
-                foreach(var item in row)
+
+
+                var matrix = await getAllAppropriateArr(null, travelPlaceList, startDate, endDate, numberOfPeople);
+
+                var argumentGroups = new List<ArrangementGroup>();
+
+                foreach (var row in matrix)
                 {
-                    arrGroup.Price+=item.Price;
-                    listArr.Add(new Arrangement(item));
+                    var arrGroup = new ArrangementGroup();
+                    var listArr = new List<Arrangement>();
+                    foreach (var item in row)
+                    {
+                        arrGroup.Price += item.Price;
+                        //listArr.Add(new Arrangement(item));
+                        listArr.Add(_mapper.Map<Arrangement>(item));
+                    }
+                    arrGroup.Arrangements = listArr;
+                    argumentGroups.Add(arrGroup);
                 }
-                arrGroup.Arrangements = listArr;
-                argumentGroups.Add(arrGroup);
+
+                return argumentGroups.ToList<IArrangementGroup>();
             }
 
-            return argumentGroups.ToList<IArrangementGroup>();
+            catch (Exception ex)
+            {
+                throw new BadRequestError("Cannot return arrangements for this data");
+            }
             
         }
 

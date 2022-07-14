@@ -29,5 +29,14 @@ namespace DiplomskiRad.Controllers
             return listOfFindingPlaces;              
         }
 
+        [HttpPost]
+        [Route("{travelPlaceId}")]
+        public async Task<List<IArrangementGroup>> GetArrById(string travelPlaceId)
+        {
+            var result = await _arrangmentService.GetArrangementByID(travelPlaceId);
+
+            return result;
+        }
+
     }
 }
