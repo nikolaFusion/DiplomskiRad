@@ -24,5 +24,6 @@ namespace Services.Models
         public TravelPlace StartPlace { get; set; }
         public ITravelCompany TravelCompany { get; set; }
 
+        public IArrangementGroup ArrangementGroup => throw new NotImplementedException();
     }
 }

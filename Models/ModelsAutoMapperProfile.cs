@@ -15,6 +15,7 @@ namespace Models
             CreateMap<IUser, User>();
             CreateMap<IUserRole, UserRole>();
             CreateMap<IArrangementGroup, ArrangementGroup>();
+            CreateMap<IUserArrangementGroup, UserArrangementGroup>();
         }
     }
 }

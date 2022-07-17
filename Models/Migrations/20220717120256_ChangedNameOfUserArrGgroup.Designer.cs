@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Models.Context;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -12,9 +13,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Models.Migrations
 {
     [DbContext(typeof(EntityContext))]
-    partial class EntityContextModelSnapshot : ModelSnapshot
+    [Migration("20220717120256_ChangedNameOfUserArrGgroup")]
+    partial class ChangedNameOfUserArrGgroup
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -594,13 +596,18 @@ namespace Models.Migrations
 
             modelBuilder.Entity("Models.UserArrangementGroup", b =>
                 {
+                    b.Property<int>("UserArrangementGroupID")
+                        .HasColumnType("integer");
+
                     b.Property<int>("UserID")
                         .HasColumnType("integer");
 
                     b.Property<int>("ArrangementGroupID")
                         .HasColumnType("integer");
 
-                    b.HasKey("UserID", "ArrangementGroupID");
+                    b.HasKey("UserArrangementGroupID", "UserID", "ArrangementGroupID");
+
+                    b.HasIndex("UserID");
 
                     b.ToTable("UserArrangementGroups");
                 });

@@ -20,7 +20,9 @@ namespace Models.Context
         public DbSet<Arrangement> Arrangements { get; set; }
         public DbSet<TravelPlace> TravelPlaces { get; set; }
         public DbSet<TravelCompany> TravelCompanies { get; set; }
-        public DbSet<UserArrangement> UserArrangements { get; set; }
+        public DbSet<ArrangementGroup> ArrangementGroups { get; set; }
+
+        public DbSet<UserArrangementGroup> UserArrangementGroups { get; set; }
 
         public EntityContext(DbContextOptions options) : base(options)
         {
@@ -89,16 +91,16 @@ namespace Models.Context
              .HasMany(x => x.Arrangements)
              .WithOne(x => x.TravelPlace);
 
-            modelBuilder.Entity<UserArrangement>()
-                .HasKey(x => new { x.UserArrangementID, x.UserID, x.ArrangementID });
-
-            modelBuilder.Entity<Arrangement>()
-            .HasMany(x => x.UserArrangements)
-            .WithOne(x => x.Arrangement);
+            modelBuilder.Entity<UserArrangementGroup>()
+                .HasKey(x => new { x.UserID, x.ArrangementGroupID });
 
             modelBuilder.Entity<User>()
              .HasMany(x => x.UserArrangements)
              .WithOne(x => x.User);
+
+            modelBuilder.Entity<ArrangementGroup>()
+             .HasKey(x => x.ArrangementGroupID);
+               
 
         }
 

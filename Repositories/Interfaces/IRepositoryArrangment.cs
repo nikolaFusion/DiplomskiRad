@@ -10,5 +10,6 @@ namespace Repositories.Interfaces
     public interface IRepositoryArrangment
     {
         Task<List<IArrangement>> GetBeforeEndDate(int place, DateTime startDate, DateTime? endDate, int numberOfPeople,bool last);
+        Task<List<IArrangement>> FindByFilter(int iD, int numberOfPlace, DateTime startDate, DateTime endDate, double downPrice, double upPrice);
     }
 }

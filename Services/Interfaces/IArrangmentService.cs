@@ -10,6 +10,6 @@ namespace Services.Interfaces
     public interface IArrangmentService
     {
         Task<List<IArrangementGroup>> GetFindingArr(List<int> travelPlaceList, DateTime startDate, DateTime? endDate, int numberOfPeople);
-        Task<List<IArrangementGroup>> GetArrangementByID(string travelPlaceId);
+        Task<List<IArrangement>> GetArrangementByFilter(string travelPlaceId, int numberOfPlace, DateTime startDate, DateTime endDate, double downPrice, double upPrice);
     }
 }

@@ -8,9 +8,8 @@ namespace Utils.Interfaces
 {
     public interface IUserArrangementGroup
     {
-        public int UserArrangementGroupID { get; set; }
-        public int ArrangementGroupID { get; set; }
-        public int UserID { get; set; }
+        public int ArrangementGroupID {get;}
+        public int UserID {get;}
         
     }
 }

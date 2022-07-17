@@ -37,11 +37,16 @@ namespace Models
         [NotMapped]
         public TravelPlace StartPlace { get; set; }
         [NotMapped]
-        public List<UserArrangement> UserArrangements { get; set; }
+        public List<ArrangementGroup> ArrangementsGroup { get; set; }
+        [NotMapped]
+        public ArrangementGroup ArrangementGroup { get; set; }
         public int StartPlaceID { get ; set ; }
+
 
         ITravelCompany IArrangement.TravelCompany => TravelCompany;
 
         ITravelPlace IArrangement.TravelPlace => TravelPlace;
+
+        IArrangementGroup IArrangement.ArrangementGroup => throw new NotImplementedException();
     }
 }

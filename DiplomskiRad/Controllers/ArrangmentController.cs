@@ -30,10 +30,11 @@ namespace DiplomskiRad.Controllers
         }
 
         [HttpPost]
-        [Route("{travelPlaceId}")]
-        public async Task<List<IArrangementGroup>> GetArrById(string travelPlaceId)
+        [Route("filter-arrangement")]
+        public async Task<List<IArrangement>> GetArrByFilter([FromBody] ArrangementFilterDto filter)
         {
-            var result = await _arrangmentService.GetArrangementByID(travelPlaceId);
+            var result = await _arrangmentService.GetArrangementByFilter(filter.TravelPlaceID,
+                filter.numberOfPlace,filter.StartDate,filter.EndDate,filter.downPrice,filter.upPrice);
 
             return result;
         }

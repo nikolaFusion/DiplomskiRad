@@ -19,6 +19,7 @@ namespace Utils.Interfaces
         public bool OnlyAirplaneTicket { get; }
         public ITravelCompany TravelCompany { get; }
         public ITravelPlace TravelPlace { get; }
+        public IArrangementGroup ArrangementGroup { get; }
 
     }
 }

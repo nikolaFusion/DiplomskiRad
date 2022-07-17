@@ -27,7 +27,7 @@ namespace Models
         [NotMapped]
         public List<UserRole> UserRoles { get; set; }
         [NotMapped]
-        public List<UserArrangement> UserArrangements { get; set; }
+        public List<UserArrangementGroup> UserArrangements { get; set; }
 
         public User()
         {

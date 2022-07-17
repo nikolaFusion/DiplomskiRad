@@ -21,7 +21,9 @@ namespace Models
         [NotMapped]
         public List<UserArrangementGroup> UserArrangementGroups { get; set; }
         [NotMapped]
-        public List<IArrangement> Arrangements { get; set; }
+        public List<Arrangement> Arrangements { get; set; }
+
+        List<IArrangement> IArrangementGroup.Arrangements => Arrangements.ToList<IArrangement>();
 
         public ArrangementGroup()
         {

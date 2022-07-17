@@ -12,8 +12,6 @@ namespace Models
     public class UserArrangementGroup : IUserArrangementGroup
     {
         [Key]
-        public int UserArrangementGroupID { get; set; }
-        [Key]
         public int ArrangementGroupID { get; set; }
         [Key]
         public int UserID { get; set; }

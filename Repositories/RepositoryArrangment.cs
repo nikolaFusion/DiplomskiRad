@@ -18,6 +18,21 @@ namespace Repositories
             _context = context;
         }
 
+        public async Task<List<IArrangement>> FindByFilter(int TravelPlaceID, int numberOfPlace,
+            DateTime startDate, DateTime endDate, double downPrice, double upPrice)
+        {
+         
+                var result = await _context.Arrangements.Where(x => x.TravelPlaceID == TravelPlaceID
+                                                                && x.SeatsInArrangement > numberOfPlace
+                                                                && x.Price >= downPrice
+                                                                && x.Price <= upPrice
+                                                                && x.DateStart<=endDate
+                                                                && x.DateStart>=startDate)
+                                                                    .ToListAsync();
+
+                return result.ToList<IArrangement>();
+        }
+
         public  async Task<List<IArrangement>> GetBeforeEndDate(int place, DateTime startDate, DateTime? endDate, int numberOfPeople, bool last)
         {
             if (last)

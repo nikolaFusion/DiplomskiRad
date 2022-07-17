@@ -23,7 +23,8 @@ namespace Services
             _mapper = mapper;
         }
 
-        public Task<List<IArrangementGroup>> GetArrangementByID(string travelPlaceId)
+        public async Task<List<IArrangement>> GetArrangementByFilter(string travelPlaceId,
+            int numberOfPlace, DateTime startDate, DateTime endDate, double downPrice, double upPrice)
         {
             int ID;
 
@@ -34,8 +35,16 @@ namespace Services
                 throw new BadRequestError("Cant parse travel place id to int");
             }
 
-            throw new Exception();
 
+            if (upPrice == 0)
+            {
+                upPrice = Double.MaxValue;
+            }
+
+            var arrangements = await _repositoryArrangment.FindByFilter(ID,numberOfPlace,
+                startDate,endDate,downPrice,upPrice);
+
+            return arrangements;
         }
 
         public async  Task<List<IArrangementGroup>> GetFindingArr(List<int> travelPlaceList, DateTime startDate, DateTime? endDate, int numberOfPeople)

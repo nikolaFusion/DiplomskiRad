@@ -14,6 +14,7 @@ namespace Services
         public ServicesAutoMapperProfile()
         {
             CreateMap<IArrangement, Arrangement>();
+            CreateMap<IArrangementGroup, ArrangementGroup>();
         }
     }
 }

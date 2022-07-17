@@ -8,8 +8,8 @@ namespace Utils.Interfaces
 {
     public interface ITravelCompany
     {
-        public int TravelCompanyID { get; set; }
-        public string Name { get; set; }
+        public int TravelCompanyID {get;}
+        public string Name {get;}
 
     }
 }

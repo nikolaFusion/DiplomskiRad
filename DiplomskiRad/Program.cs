@@ -27,10 +27,13 @@ builder.Services.AddScoped<IRepositoryRole, RepositoryRole>();
 builder.Services.AddScoped<IRepositoryUserRole, RepositoryUserRole>();
 builder.Services.AddScoped<IRepositoryTravelPlaces, RepositoryTravelPlaces>();
 builder.Services.AddScoped<IRepositoryArrangment, RepositoryArrangment>();
+builder.Services.AddScoped<IRepositoryArranegementGroup, RepositoryArrangementGroup>();
+builder.Services.AddScoped<IRepositoryUserArrangementGroup, RepositoryUserArrangementGroup>();
 
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ITravelPlacesService, TravelPlacesService>();
 builder.Services.AddScoped<IArrangmentService, ArrangmentService>();
+builder.Services.AddScoped<IArrangementGroupService, ArrangementGroupService>();
 
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
