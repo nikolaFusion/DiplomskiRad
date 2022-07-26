@@ -39,5 +39,14 @@ namespace DiplomskiRad.Controllers
             return result;
         }
 
+        [HttpGet]
+        [Route("all-arrangement/{id}")]
+        public async Task<List<IArrangement>> GetArrByFilter(string id)
+        {
+            var result = await _arrangmentService.FindAllByPlaceId(id);
+
+            return result;
+        }
+
     }
 }

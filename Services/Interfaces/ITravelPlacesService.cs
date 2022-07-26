@@ -11,5 +11,6 @@ namespace Services.Interfaces
     {
         Task<List<ITravelPlace>> GetAll();
         Task<List<ITravelPlace>> FindByValue(string searchValue);
+        Task<ITravelPlace> FindById(string id);
     }
 }

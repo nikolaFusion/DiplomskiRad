@@ -11,5 +11,6 @@ namespace Repositories.Interfaces
     {
         Task<List<ITravelPlace>> GetAll();
         Task<List<ITravelPlace>> FindByValue(string? searchValue);
+        Task<ITravelPlace> FindByID(int id);
     }
 }

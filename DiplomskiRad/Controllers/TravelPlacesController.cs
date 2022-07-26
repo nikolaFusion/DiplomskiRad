@@ -39,6 +39,17 @@ namespace DiplomskiRad.Controllers
 
             return list;
         }
+
+        [HttpGet]
+        [Route("travel-place/{id}")]
+        public async Task<ActionResult<TravelPlacesDto>> GetTravelPlace(string id)
+        {
+            var result = await _travelService.FindById(id);
+
+            var res = new TravelPlacesDto(result);
+
+            return res;
+        }
     }
 }
 

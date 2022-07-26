@@ -23,6 +23,22 @@ namespace Services
             _mapper = mapper;
         }
 
+        public async Task<List<IArrangement>> FindAllByPlaceId(string id)
+        {
+            int idTravelPlace;
+
+            bool succesfullParsing = Int32.TryParse(id, out idTravelPlace);
+
+            if (!succesfullParsing)
+            {
+                throw new BadRequestError("Cant parse travel place id to int");
+            }
+
+            var arrangements = await _repositoryArrangment.FindAllByPlaceId(idTravelPlace);
+
+            return arrangements;
+        }
+
         public async Task<List<IArrangement>> GetArrangementByFilter(string travelPlaceId,
             int numberOfPlace, DateTime startDate, DateTime endDate, double downPrice, double upPrice)
         {

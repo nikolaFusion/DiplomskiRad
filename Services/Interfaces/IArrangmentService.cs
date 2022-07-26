@@ -11,5 +11,6 @@ namespace Services.Interfaces
     {
         Task<List<IArrangementGroup>> GetFindingArr(List<int> travelPlaceList, DateTime startDate, DateTime? endDate, int numberOfPeople);
         Task<List<IArrangement>> GetArrangementByFilter(string travelPlaceId, int numberOfPlace, DateTime startDate, DateTime endDate, double downPrice, double upPrice);
+        Task<List<IArrangement>> FindAllByPlaceId(string id);
     }
 }

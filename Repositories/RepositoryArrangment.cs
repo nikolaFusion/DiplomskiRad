@@ -18,6 +18,13 @@ namespace Repositories
             _context = context;
         }
 
+        public async Task<List<IArrangement>> FindAllByPlaceId(int idTravelPlace)
+        {
+            var result = await _context.Arrangements.Where(x => x.TravelPlaceID == idTravelPlace).ToListAsync();
+
+            return result.ToList<IArrangement>();
+        }
+
         public async Task<List<IArrangement>> FindByFilter(int TravelPlaceID, int numberOfPlace,
             DateTime startDate, DateTime endDate, double downPrice, double upPrice)
         {

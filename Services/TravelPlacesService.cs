@@ -18,6 +18,26 @@ namespace Services
             _repoTravelPlace = repoTravelPlace;
         }
 
+        public async Task<ITravelPlace> FindById(string id)
+        {
+            int idNum;
+
+            try
+            {
+                if(!Int32.TryParse(id, out idNum))
+                {
+                    throw new BadRequestError($"This id:{id} is not number");
+                }
+
+                var result = await _repoTravelPlace.FindByID(idNum);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw new BadRequestError($"Cannot return travel places with id:{id}");
+            }
+        }
+
         public async Task<List<ITravelPlace>> FindByValue(string searchValue)
         {
             if(searchValue == null)
