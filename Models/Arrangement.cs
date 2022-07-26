@@ -47,6 +47,6 @@ namespace Models
 
         ITravelPlace IArrangement.TravelPlace => TravelPlace;
 
-        IArrangementGroup IArrangement.ArrangementGroup => throw new NotImplementedException();
+        IArrangementGroup IArrangement.ArrangementGroup =>ArrangementGroup;
     }
 }
