@@ -44,6 +44,15 @@ namespace Repositories
             return result;
         }
 
+        public async Task<List<IUserArrangementGroup>> GetByUserId(int id)
+        {
+            var result = await _context.UserArrangementGroups.Where(x => x.UserID == id)
+                                                    .Include(x=>x.ArrangementGroup)
+                                                    .ToListAsync();
+
+            return result.ToList<IUserArrangementGroup>();
+        }
+
         public async Task<bool> Save(IUserArrangementGroup userArrGroup)
         {
             UserArrangementGroup uArrGroup = _mapper.Map<UserArrangementGroup>(userArrGroup);

@@ -12,5 +12,6 @@ namespace Repositories.Interfaces
         Task<IUserArrangementGroup> GetByArrangementGroupID(int id, int idArrGroup);
         Task<bool> Delete(int id, int arrGroupId);
         Task<bool> Save(IUserArrangementGroup userArrGroup);
+        Task<List<IUserArrangementGroup>> GetByUserId(int id);
     }
 }

@@ -21,13 +21,14 @@ namespace DiplomskiRad.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize]
         [Route("save")]
-        public async Task<bool> SaveArrangementGroup([FromBody] ArrangementGroupDto arrangementGroup)
+        public async Task<bool> SaveArrangementGroup([FromBody] SaveModelDto arrangementGroup)
         {
+
             var userID = _httpContext.User.Claims.FirstOrDefault().Value;
 
-            await _arrangementGroupService.Save(arrangementGroup.Price,userID, arrangementGroup.ArrangementsIDs);
+            await _arrangementGroupService.Save(arrangementGroup.Price, userID, arrangementGroup.IDs);
 
             return true;
         }
@@ -40,6 +41,18 @@ namespace DiplomskiRad.Controllers
             var userID = _httpContext.User.Claims.FirstOrDefault().Value;
 
             await _arrangementGroupService.Delete(arrangementGroupID, userID);
+
+            return true;
+        }
+
+        [HttpGet]
+        [Authorize]
+        [Route("my-arrangements")]
+        public async Task<bool> GetMyArrangements()
+        {
+            var userID = _httpContext.User.Claims.FirstOrDefault().Value;
+
+            var result= await _arrangementGroupService.GetArrangemenyByUserId(userID);
 
             return true;
         }

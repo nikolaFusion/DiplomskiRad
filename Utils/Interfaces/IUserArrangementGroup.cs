@@ -10,6 +10,9 @@ namespace Utils.Interfaces
     {
         public int ArrangementGroupID {get;}
         public int UserID {get;}
-        
+
+        public IArrangementGroup ArrangementGroup { get; }
+        public IUser User { get;  }
+
     }
 }

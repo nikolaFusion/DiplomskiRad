@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
 using Utils.ErrorModels;
+using Utils.Interfaces;
 
 namespace Services
 {
@@ -76,6 +77,24 @@ namespace Services
             }
 
             return true;
+        }
+
+        public async Task<List<IArrangementGroup>> GetArrangemenyByUserId(string userID)
+        {
+            int id;
+
+            bool succesfullParse = Int32.TryParse(userID, out id);
+
+            if (!succesfullParse)
+            {
+                throw new BadRequestError("Invalid token");
+            }
+
+            var arrListGr = await _userArrangementGroupRepo.GetByUserId(id);
+
+            var result = arrListGr.Select(x => x.ArrangementGroup).ToList();
+
+            return result;
         }
 
         public async Task<bool> Save( double price, string userID,List<int> arrangementsIDs)

@@ -20,5 +20,9 @@ namespace Models
         public ArrangementGroup ArrangementGroup { get; set; }
         [NotMapped]
         public User User { get; set; }
+
+        IArrangementGroup IUserArrangementGroup.ArrangementGroup => ArrangementGroup;
+
+        IUser IUserArrangementGroup.User => User;
     }
 }
