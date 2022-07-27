@@ -15,6 +15,7 @@ namespace Models
         public int TravelCompanyID { get; set; }
         [Required]
         public string Name { get; set; }
+        public string ImageUrl { get; set; }
 
         [NotMapped]
         public List<Arrangement> Arrangements { get; set; }

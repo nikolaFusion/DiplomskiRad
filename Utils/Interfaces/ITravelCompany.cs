@@ -11,5 +11,7 @@ namespace Utils.Interfaces
         public int TravelCompanyID {get;}
         public string Name {get;}
 
+        public string ImageUrl { get; set; }
+
     }
 }

@@ -14,6 +14,9 @@ namespace DTOs
         public double Price { get; set; }
         public List<ArrangenemtDto> Arrangements { get; set; }
 
+        public ArrangementGroupDto()
+        {
+        }
         public ArrangementGroupDto(IArrangementGroup arrangenemtGroup)
         {
             ArrangementGroupID = arrangenemtGroup.ArrangementGroupID;
@@ -21,5 +24,6 @@ namespace DTOs
             Price = arrangenemtGroup.Price;
             Arrangements = arrangenemtGroup.Arrangements.Select(x=>new ArrangenemtDto(x)).ToList();
         }
+
     }
 }

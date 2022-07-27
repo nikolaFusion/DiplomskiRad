@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Models.Context;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -12,9 +13,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Models.Migrations
 {
     [DbContext(typeof(EntityContext))]
-    partial class EntityContextModelSnapshot : ModelSnapshot
+    [Migration("20220727091223_ChangedSeedTravelCompany")]
+    partial class ChangedSeedTravelCompany
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -76,7 +78,7 @@ namespace Models.Migrations
                         new
                         {
                             ArrangementID = 2,
-                            TravelCompanyID = 5,
+                            TravelCompanyID = 4,
                             TravelPlaceID = 3,
                             DateEnd = new DateTime(2022, 9, 24, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             DateStart = new DateTime(2022, 9, 21, 17, 0, 0, 0, DateTimeKind.Unspecified),
@@ -88,7 +90,7 @@ namespace Models.Migrations
                         new
                         {
                             ArrangementID = 3,
-                            TravelCompanyID = 1,
+                            TravelCompanyID = 7,
                             TravelPlaceID = 5,
                             DateEnd = new DateTime(2022, 9, 27, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             DateStart = new DateTime(2022, 9, 24, 17, 0, 0, 0, DateTimeKind.Unspecified),
@@ -100,7 +102,7 @@ namespace Models.Migrations
                         new
                         {
                             ArrangementID = 4,
-                            TravelCompanyID = 6,
+                            TravelCompanyID = 1,
                             TravelPlaceID = 21,
                             DateStart = new DateTime(2022, 9, 27, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             OnlyAirplaneTicket = true,
@@ -111,7 +113,7 @@ namespace Models.Migrations
                         new
                         {
                             ArrangementID = 5,
-                            TravelCompanyID = 3,
+                            TravelCompanyID = 2,
                             TravelPlaceID = 4,
                             DateEnd = new DateTime(2022, 9, 21, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             DateStart = new DateTime(2022, 9, 19, 12, 0, 0, 0, DateTimeKind.Unspecified),
@@ -123,7 +125,7 @@ namespace Models.Migrations
                         new
                         {
                             ArrangementID = 6,
-                            TravelCompanyID = 2,
+                            TravelCompanyID = 4,
                             TravelPlaceID = 3,
                             DateEnd = new DateTime(2022, 9, 24, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             DateStart = new DateTime(2022, 9, 21, 17, 0, 0, 0, DateTimeKind.Unspecified),
@@ -135,7 +137,7 @@ namespace Models.Migrations
                         new
                         {
                             ArrangementID = 7,
-                            TravelCompanyID = 4,
+                            TravelCompanyID = 7,
                             TravelPlaceID = 5,
                             DateEnd = new DateTime(2022, 9, 27, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             DateStart = new DateTime(2022, 9, 24, 17, 0, 0, 0, DateTimeKind.Unspecified),
@@ -147,317 +149,11 @@ namespace Models.Migrations
                         new
                         {
                             ArrangementID = 8,
-                            TravelCompanyID = 3,
+                            TravelCompanyID = 1,
                             TravelPlaceID = 21,
                             DateStart = new DateTime(2022, 9, 27, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             OnlyAirplaneTicket = true,
                             Price = 272.31999999999999,
-                            SeatsInArrangement = 10,
-                            StartPlaceID = 0
-                        },
-                        new
-                        {
-                            ArrangementID = 9,
-                            TravelCompanyID = 1,
-                            TravelPlaceID = 1,
-                            DateEnd = new DateTime(2022, 9, 21, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateStart = new DateTime(2022, 9, 19, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            OnlyAirplaneTicket = false,
-                            Price = 1212.1199999999999,
-                            SeatsInArrangement = 10,
-                            StartPlaceID = 0
-                        },
-                        new
-                        {
-                            ArrangementID = 10,
-                            TravelCompanyID = 2,
-                            TravelPlaceID = 2,
-                            DateEnd = new DateTime(2022, 9, 24, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateStart = new DateTime(2022, 9, 21, 17, 0, 0, 0, DateTimeKind.Unspecified),
-                            OnlyAirplaneTicket = false,
-                            Price = 142.50999999999999,
-                            SeatsInArrangement = 10,
-                            StartPlaceID = 0
-                        },
-                        new
-                        {
-                            ArrangementID = 11,
-                            TravelCompanyID = 3,
-                            TravelPlaceID = 6,
-                            DateEnd = new DateTime(2022, 9, 27, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateStart = new DateTime(2022, 9, 24, 17, 0, 0, 0, DateTimeKind.Unspecified),
-                            OnlyAirplaneTicket = false,
-                            Price = 436.31999999999999,
-                            SeatsInArrangement = 10,
-                            StartPlaceID = 0
-                        },
-                        new
-                        {
-                            ArrangementID = 12,
-                            TravelCompanyID = 4,
-                            TravelPlaceID = 7,
-                            DateStart = new DateTime(2022, 9, 27, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            OnlyAirplaneTicket = true,
-                            Price = 45.719999999999999,
-                            SeatsInArrangement = 10,
-                            StartPlaceID = 0
-                        },
-                        new
-                        {
-                            ArrangementID = 13,
-                            TravelCompanyID = 5,
-                            TravelPlaceID = 8,
-                            DateEnd = new DateTime(2022, 9, 21, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateStart = new DateTime(2022, 9, 19, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            OnlyAirplaneTicket = false,
-                            Price = 834.34000000000003,
-                            SeatsInArrangement = 10,
-                            StartPlaceID = 0
-                        },
-                        new
-                        {
-                            ArrangementID = 14,
-                            TravelCompanyID = 6,
-                            TravelPlaceID = 9,
-                            DateEnd = new DateTime(2022, 9, 24, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateStart = new DateTime(2022, 9, 21, 17, 0, 0, 0, DateTimeKind.Unspecified),
-                            OnlyAirplaneTicket = false,
-                            Price = 125.34,
-                            SeatsInArrangement = 10,
-                            StartPlaceID = 0
-                        },
-                        new
-                        {
-                            ArrangementID = 15,
-                            TravelCompanyID = 7,
-                            TravelPlaceID = 10,
-                            DateEnd = new DateTime(2022, 9, 27, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateStart = new DateTime(2022, 9, 24, 17, 0, 0, 0, DateTimeKind.Unspecified),
-                            OnlyAirplaneTicket = false,
-                            Price = 345.23000000000002,
-                            SeatsInArrangement = 10,
-                            StartPlaceID = 0
-                        },
-                        new
-                        {
-                            ArrangementID = 16,
-                            TravelCompanyID = 6,
-                            TravelPlaceID = 11,
-                            DateStart = new DateTime(2022, 9, 27, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            OnlyAirplaneTicket = true,
-                            Price = 373.33999999999997,
-                            SeatsInArrangement = 10,
-                            StartPlaceID = 0
-                        },
-                        new
-                        {
-                            ArrangementID = 17,
-                            TravelCompanyID = 5,
-                            TravelPlaceID = 12,
-                            DateEnd = new DateTime(2022, 9, 21, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateStart = new DateTime(2022, 9, 19, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            OnlyAirplaneTicket = false,
-                            Price = 612.24000000000001,
-                            SeatsInArrangement = 10,
-                            StartPlaceID = 0
-                        },
-                        new
-                        {
-                            ArrangementID = 18,
-                            TravelCompanyID = 4,
-                            TravelPlaceID = 13,
-                            DateEnd = new DateTime(2022, 9, 24, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateStart = new DateTime(2022, 9, 21, 17, 0, 0, 0, DateTimeKind.Unspecified),
-                            OnlyAirplaneTicket = false,
-                            Price = 247.99000000000001,
-                            SeatsInArrangement = 10,
-                            StartPlaceID = 0
-                        },
-                        new
-                        {
-                            ArrangementID = 19,
-                            TravelCompanyID = 3,
-                            TravelPlaceID = 14,
-                            DateEnd = new DateTime(2022, 9, 27, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateStart = new DateTime(2022, 9, 24, 17, 0, 0, 0, DateTimeKind.Unspecified),
-                            OnlyAirplaneTicket = false,
-                            Price = 326.12,
-                            SeatsInArrangement = 10,
-                            StartPlaceID = 0
-                        },
-                        new
-                        {
-                            ArrangementID = 20,
-                            TravelCompanyID = 2,
-                            TravelPlaceID = 15,
-                            DateStart = new DateTime(2022, 9, 27, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            OnlyAirplaneTicket = true,
-                            Price = 261.31999999999999,
-                            SeatsInArrangement = 10,
-                            StartPlaceID = 0
-                        },
-                        new
-                        {
-                            ArrangementID = 21,
-                            TravelCompanyID = 1,
-                            TravelPlaceID = 16,
-                            DateEnd = new DateTime(2022, 9, 21, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateStart = new DateTime(2022, 9, 19, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            OnlyAirplaneTicket = false,
-                            Price = 223.22,
-                            SeatsInArrangement = 10,
-                            StartPlaceID = 0
-                        },
-                        new
-                        {
-                            ArrangementID = 22,
-                            TravelCompanyID = 2,
-                            TravelPlaceID = 17,
-                            DateEnd = new DateTime(2022, 9, 24, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateStart = new DateTime(2022, 9, 21, 17, 0, 0, 0, DateTimeKind.Unspecified),
-                            OnlyAirplaneTicket = false,
-                            Price = 617.99000000000001,
-                            SeatsInArrangement = 10,
-                            StartPlaceID = 0
-                        },
-                        new
-                        {
-                            ArrangementID = 23,
-                            TravelCompanyID = 3,
-                            TravelPlaceID = 18,
-                            DateEnd = new DateTime(2022, 9, 27, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateStart = new DateTime(2022, 9, 24, 17, 0, 0, 0, DateTimeKind.Unspecified),
-                            OnlyAirplaneTicket = false,
-                            Price = 526.12,
-                            SeatsInArrangement = 10,
-                            StartPlaceID = 0
-                        },
-                        new
-                        {
-                            ArrangementID = 24,
-                            TravelCompanyID = 4,
-                            TravelPlaceID = 19,
-                            DateStart = new DateTime(2022, 9, 27, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            OnlyAirplaneTicket = true,
-                            Price = 213.31999999999999,
-                            SeatsInArrangement = 10,
-                            StartPlaceID = 0
-                        },
-                        new
-                        {
-                            ArrangementID = 25,
-                            TravelCompanyID = 5,
-                            TravelPlaceID = 20,
-                            DateEnd = new DateTime(2022, 9, 21, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateStart = new DateTime(2022, 9, 19, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            OnlyAirplaneTicket = false,
-                            Price = 523.22000000000003,
-                            SeatsInArrangement = 10,
-                            StartPlaceID = 0
-                        },
-                        new
-                        {
-                            ArrangementID = 26,
-                            TravelCompanyID = 6,
-                            TravelPlaceID = 21,
-                            DateEnd = new DateTime(2022, 9, 24, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateStart = new DateTime(2022, 9, 21, 17, 0, 0, 0, DateTimeKind.Unspecified),
-                            OnlyAirplaneTicket = false,
-                            Price = 227.99000000000001,
-                            SeatsInArrangement = 10,
-                            StartPlaceID = 0
-                        },
-                        new
-                        {
-                            ArrangementID = 27,
-                            TravelCompanyID = 7,
-                            TravelPlaceID = 15,
-                            DateEnd = new DateTime(2022, 9, 27, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateStart = new DateTime(2022, 9, 24, 17, 0, 0, 0, DateTimeKind.Unspecified),
-                            OnlyAirplaneTicket = false,
-                            Price = 426.12,
-                            SeatsInArrangement = 10,
-                            StartPlaceID = 0
-                        },
-                        new
-                        {
-                            ArrangementID = 28,
-                            TravelCompanyID = 1,
-                            TravelPlaceID = 14,
-                            DateStart = new DateTime(2022, 9, 27, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            OnlyAirplaneTicket = true,
-                            Price = 672.32000000000005,
-                            SeatsInArrangement = 10,
-                            StartPlaceID = 0
-                        },
-                        new
-                        {
-                            ArrangementID = 29,
-                            TravelCompanyID = 1,
-                            TravelPlaceID = 17,
-                            DateEnd = new DateTime(2022, 9, 21, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateStart = new DateTime(2022, 9, 19, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            OnlyAirplaneTicket = false,
-                            Price = 213.22,
-                            SeatsInArrangement = 10,
-                            StartPlaceID = 0
-                        },
-                        new
-                        {
-                            ArrangementID = 30,
-                            TravelCompanyID = 3,
-                            TravelPlaceID = 17,
-                            DateEnd = new DateTime(2022, 9, 24, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateStart = new DateTime(2022, 9, 21, 17, 0, 0, 0, DateTimeKind.Unspecified),
-                            OnlyAirplaneTicket = false,
-                            Price = 237.99000000000001,
-                            SeatsInArrangement = 10,
-                            StartPlaceID = 0
-                        },
-                        new
-                        {
-                            ArrangementID = 31,
-                            TravelCompanyID = 4,
-                            TravelPlaceID = 17,
-                            DateEnd = new DateTime(2022, 9, 27, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateStart = new DateTime(2022, 9, 24, 17, 0, 0, 0, DateTimeKind.Unspecified),
-                            OnlyAirplaneTicket = false,
-                            Price = 426.12,
-                            SeatsInArrangement = 10,
-                            StartPlaceID = 0
-                        },
-                        new
-                        {
-                            ArrangementID = 32,
-                            TravelCompanyID = 5,
-                            TravelPlaceID = 17,
-                            DateStart = new DateTime(2022, 9, 27, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            OnlyAirplaneTicket = true,
-                            Price = 312.20999999999998,
-                            SeatsInArrangement = 10,
-                            StartPlaceID = 0
-                        },
-                        new
-                        {
-                            ArrangementID = 29,
-                            TravelCompanyID = 6,
-                            TravelPlaceID = 17,
-                            DateEnd = new DateTime(2022, 9, 21, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateStart = new DateTime(2022, 9, 19, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            OnlyAirplaneTicket = false,
-                            Price = 243.22,
-                            SeatsInArrangement = 10,
-                            StartPlaceID = 0
-                        },
-                        new
-                        {
-                            ArrangementID = 30,
-                            TravelCompanyID = 7,
-                            TravelPlaceID = 17,
-                            DateEnd = new DateTime(2022, 9, 24, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateStart = new DateTime(2022, 9, 21, 17, 0, 0, 0, DateTimeKind.Unspecified),
-                            OnlyAirplaneTicket = false,
-                            Price = 327.99000000000001,
                             SeatsInArrangement = 10,
                             StartPlaceID = 0
                         });
@@ -820,7 +516,7 @@ namespace Models.Migrations
                             TravelPlaceID = 17,
                             Country = "France",
                             Description = "Your chosen destination will depend on your preferences: beaches, towns, access to villages, lively resorts with all facilities, quiet coastal footpaths...most visitors will not expect to explore the entire Cote d'Azur in one trip or have the same requirements from a holiday. Below we guide you to the part of the Cote d'Azur most suitable for your needs, and you can then use the map and the reviews of individual places in the same area to help you decide where to go.If you have no idea where to start exploring, the most visited section of the coast with such famous resorts as Nice, Antibes, Saint-Tropez and Cannes as well as impressive hill villages and areas of great natural beauty is around Nice. Stay on the seafront in Nice and use the train to explore nearby towns and resorts and you will certainly have a good introduction to the Cote d'Azur: see riviera train.",
-                            ImageUrl = "https://static.tildacdn.com/tild6333-3963-4232-b139-343838313334/ote-d-azur-cruise-tr.jpeg",
+                            ImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEaXji0VkVk3EnKP7UPrS6ZY-FEQOk9W_5Le4VrSEK07Sy9BJB2-v4u1L9Xsq3blTDnUo&usqp=CAU",
                             Name = "Cote d'Azur"
                         },
                         new

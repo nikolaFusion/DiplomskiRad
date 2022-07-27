@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Models.Context;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -12,9 +13,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Models.Migrations
 {
     [DbContext(typeof(EntityContext))]
-    partial class EntityContextModelSnapshot : ModelSnapshot
+    [Migration("20220727092113_InsertedMoreArrangementsInSeed")]
+    partial class InsertedMoreArrangementsInSeed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -389,77 +391,6 @@ namespace Models.Migrations
                             Price = 672.32000000000005,
                             SeatsInArrangement = 10,
                             StartPlaceID = 0
-                        },
-                        new
-                        {
-                            ArrangementID = 29,
-                            TravelCompanyID = 1,
-                            TravelPlaceID = 17,
-                            DateEnd = new DateTime(2022, 9, 21, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateStart = new DateTime(2022, 9, 19, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            OnlyAirplaneTicket = false,
-                            Price = 213.22,
-                            SeatsInArrangement = 10,
-                            StartPlaceID = 0
-                        },
-                        new
-                        {
-                            ArrangementID = 30,
-                            TravelCompanyID = 3,
-                            TravelPlaceID = 17,
-                            DateEnd = new DateTime(2022, 9, 24, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateStart = new DateTime(2022, 9, 21, 17, 0, 0, 0, DateTimeKind.Unspecified),
-                            OnlyAirplaneTicket = false,
-                            Price = 237.99000000000001,
-                            SeatsInArrangement = 10,
-                            StartPlaceID = 0
-                        },
-                        new
-                        {
-                            ArrangementID = 31,
-                            TravelCompanyID = 4,
-                            TravelPlaceID = 17,
-                            DateEnd = new DateTime(2022, 9, 27, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateStart = new DateTime(2022, 9, 24, 17, 0, 0, 0, DateTimeKind.Unspecified),
-                            OnlyAirplaneTicket = false,
-                            Price = 426.12,
-                            SeatsInArrangement = 10,
-                            StartPlaceID = 0
-                        },
-                        new
-                        {
-                            ArrangementID = 32,
-                            TravelCompanyID = 5,
-                            TravelPlaceID = 17,
-                            DateStart = new DateTime(2022, 9, 27, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            OnlyAirplaneTicket = true,
-                            Price = 312.20999999999998,
-                            SeatsInArrangement = 10,
-                            StartPlaceID = 0
-                        },
-                        new
-                        {
-                            ArrangementID = 29,
-                            TravelCompanyID = 6,
-                            TravelPlaceID = 17,
-                            DateEnd = new DateTime(2022, 9, 21, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateStart = new DateTime(2022, 9, 19, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            OnlyAirplaneTicket = false,
-                            Price = 243.22,
-                            SeatsInArrangement = 10,
-                            StartPlaceID = 0
-                        },
-                        new
-                        {
-                            ArrangementID = 30,
-                            TravelCompanyID = 7,
-                            TravelPlaceID = 17,
-                            DateEnd = new DateTime(2022, 9, 24, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateStart = new DateTime(2022, 9, 21, 17, 0, 0, 0, DateTimeKind.Unspecified),
-                            OnlyAirplaneTicket = false,
-                            Price = 327.99000000000001,
-                            SeatsInArrangement = 10,
-                            StartPlaceID = 0
                         });
                 });
 
@@ -820,7 +751,7 @@ namespace Models.Migrations
                             TravelPlaceID = 17,
                             Country = "France",
                             Description = "Your chosen destination will depend on your preferences: beaches, towns, access to villages, lively resorts with all facilities, quiet coastal footpaths...most visitors will not expect to explore the entire Cote d'Azur in one trip or have the same requirements from a holiday. Below we guide you to the part of the Cote d'Azur most suitable for your needs, and you can then use the map and the reviews of individual places in the same area to help you decide where to go.If you have no idea where to start exploring, the most visited section of the coast with such famous resorts as Nice, Antibes, Saint-Tropez and Cannes as well as impressive hill villages and areas of great natural beauty is around Nice. Stay on the seafront in Nice and use the train to explore nearby towns and resorts and you will certainly have a good introduction to the Cote d'Azur: see riviera train.",
-                            ImageUrl = "https://static.tildacdn.com/tild6333-3963-4232-b139-343838313334/ote-d-azur-cruise-tr.jpeg",
+                            ImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEaXji0VkVk3EnKP7UPrS6ZY-FEQOk9W_5Le4VrSEK07Sy9BJB2-v4u1L9Xsq3blTDnUo&usqp=CAU",
                             Name = "Cote d'Azur"
                         },
                         new

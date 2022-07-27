@@ -11,11 +11,13 @@ namespace Services.Models
     {
         public int TravelCompanyID { get; set; }
         public string Name { get; set; }
-    
+        public string ImageUrl { get ; set; }
+
         public TravelCompany(ITravelCompany travelCompany)
         {
             TravelCompanyID = travelCompany.TravelCompanyID;
             Name = travelCompany.Name;
+            ImageUrl = travelCompany.ImageUrl;
         }
     }
 }

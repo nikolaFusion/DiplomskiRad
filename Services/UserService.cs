@@ -89,7 +89,7 @@ namespace Services
         {
             var existingUser = await _userRepo.GetUserByUsername(model.Username);
 
-            if (existingUser == null)
+            if (existingUser != null)
             {
                 throw new UnautorizedError("Cannot find user");
             }

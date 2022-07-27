@@ -21,9 +21,9 @@ namespace DiplomskiRad.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [AllowAnonymous]
         [Route("save")]
-        public async Task<bool> SaveArrangementGroup([FromBody] ArrangementGroup2Dto arrangementGroup)
+        public async Task<bool> SaveArrangementGroup([FromBody] ArrangementGroupDto arrangementGroup)
         {
             var userID = _httpContext.User.Claims.FirstOrDefault().Value;
 

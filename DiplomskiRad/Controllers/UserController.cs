@@ -51,6 +51,8 @@ namespace DiplomskiRad.Controllers
 
             var user = _mapper.Map<UserDto>(result);
 
+            user.Password = null;
+
             return Ok(user);
         }
 

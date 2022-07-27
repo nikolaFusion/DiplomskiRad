@@ -20,7 +20,10 @@ namespace Repositories
 
         public async Task<List<IArrangement>> FindAllByPlaceId(int idTravelPlace)
         {
-            var result = await _context.Arrangements.Where(x => x.TravelPlaceID == idTravelPlace).ToListAsync();
+            var result = await _context.Arrangements.Where(x => x.TravelPlaceID == idTravelPlace)
+                                                    .Include(x=>x.TravelPlace)
+                                                    .Include(x=>x.TravelCompany)
+                                                    .ToListAsync();
 
             return result.ToList<IArrangement>();
         }
