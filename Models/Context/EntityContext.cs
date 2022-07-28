@@ -100,7 +100,15 @@ namespace Models.Context
 
             modelBuilder.Entity<ArrangementGroup>()
              .HasKey(x => x.ArrangementGroupID);
-               
+
+            modelBuilder.Entity<ArrangementGroup>()
+                .HasMany(x => x.UserArrangementGroups)
+                .WithOne(x => x.ArrangementGroup);
+
+            modelBuilder.Entity<Arrangement>()
+                .HasMany(x => x.ArrangementsGroup)
+                .WithMany(x => x.Arrangements);
+
 
         }
 
@@ -197,8 +205,8 @@ namespace Models.Context
                                                      new Arrangement { ArrangementID = 31, TravelCompanyID = 4, TravelPlaceID = 17, DateStart = new DateTime(2022, 9, 24, 17, 0, 0), DateEnd = new DateTime(2022, 9, 27, 12, 0, 0), Price = 426.12, SeatsInArrangement = 10, OnlyAirplaneTicket = false },
                                                      new Arrangement { ArrangementID = 32, TravelCompanyID = 5, TravelPlaceID = 17, DateStart = new DateTime(2022, 9, 27, 12, 0, 0), DateEnd = null, Price = 312.21, SeatsInArrangement = 10, OnlyAirplaneTicket = true });
 
-            modelBuilder.Entity<Arrangement>().HasData(new Arrangement { ArrangementID = 29, TravelCompanyID = 6, TravelPlaceID = 17, DateStart = new DateTime(2022, 9, 19, 12, 0, 0), DateEnd = new DateTime(2022, 9, 21, 12, 0, 0), Price = 243.22, SeatsInArrangement = 10, OnlyAirplaneTicket = false },
-                                         new Arrangement { ArrangementID = 30, TravelCompanyID = 7, TravelPlaceID = 17, DateStart = new DateTime(2022, 9, 21, 17, 0, 0), DateEnd = new DateTime(2022, 9, 24, 12, 0, 0), Price = 327.99, SeatsInArrangement = 10, OnlyAirplaneTicket = false });
+            modelBuilder.Entity<Arrangement>().HasData(new Arrangement { ArrangementID = 33, TravelCompanyID = 6, TravelPlaceID = 17, DateStart = new DateTime(2022, 9, 19, 12, 0, 0), DateEnd = new DateTime(2022, 9, 21, 12, 0, 0), Price = 243.22, SeatsInArrangement = 10, OnlyAirplaneTicket = false },
+                                         new Arrangement { ArrangementID = 34, TravelCompanyID = 7, TravelPlaceID = 17, DateStart = new DateTime(2022, 9, 21, 17, 0, 0), DateEnd = new DateTime(2022, 9, 24, 12, 0, 0), Price = 327.99, SeatsInArrangement = 10, OnlyAirplaneTicket = false });
                                       
         }
     }

@@ -35,12 +35,12 @@ namespace DiplomskiRad.Controllers
 
         [HttpDelete]
         [Authorize]
-        [Route("{arrangementGroupID}")]
-        public async Task<bool> DeleteArrangementGroup(string arrangementGroupID)
+        [Route("{id}")]
+        public async Task<bool> DeleteArrangementGroup(string id)
         {
             var userID = _httpContext.User.Claims.FirstOrDefault().Value;
 
-            await _arrangementGroupService.Delete(arrangementGroupID, userID);
+            await _arrangementGroupService.Delete(id, userID);
 
             return true;
         }
@@ -48,13 +48,15 @@ namespace DiplomskiRad.Controllers
         [HttpGet]
         [Authorize]
         [Route("my-arrangements")]
-        public async Task<bool> GetMyArrangements()
+        public async Task<List<ArrangementGroupDto>> GetMyArrangements()
         {
             var userID = _httpContext.User.Claims.FirstOrDefault().Value;
 
-            var result= await _arrangementGroupService.GetArrangemenyByUserId(userID);
+            var res = await _arrangementGroupService.GetArrangemenyByUserId(userID);
 
-            return true;
+            var result = res.Select(x => new ArrangementGroupDto(x)).ToList();
+
+            return result;
         }
     }
 }

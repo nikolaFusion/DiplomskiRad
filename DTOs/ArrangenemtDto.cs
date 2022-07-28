@@ -34,6 +34,8 @@ namespace DTOs
             Price = arrangement.Price;
             SeatsInArrangement = arrangement.SeatsInArrangement;
             OnlyAirplaneTicket= arrangement.OnlyAirplaneTicket;
+            TravelPlace = new TravelPlace(arrangement.TravelPlace);
+            TravelCompany =new TravelCompany(arrangement.TravelCompany);
         }
         
         public ArrangenemtDto()

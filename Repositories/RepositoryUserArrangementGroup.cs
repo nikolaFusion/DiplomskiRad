@@ -48,6 +48,7 @@ namespace Repositories
         {
             var result = await _context.UserArrangementGroups.Where(x => x.UserID == id)
                                                     .Include(x=>x.ArrangementGroup)
+                                                        .ThenInclude(x=>x.Arrangements)
                                                     .ToListAsync();
 
             return result.ToList<IUserArrangementGroup>();

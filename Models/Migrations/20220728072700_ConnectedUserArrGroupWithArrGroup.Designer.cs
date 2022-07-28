@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Models.Context;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -12,9 +13,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Models.Migrations
 {
     [DbContext(typeof(EntityContext))]
-    partial class EntityContextModelSnapshot : ModelSnapshot
+    [Migration("20220728072700_ConnectedUserArrGroupWithArrGroup")]
+    partial class ConnectedUserArrGroupWithArrGroup
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,27 +24,6 @@ namespace Models.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
-
-            modelBuilder.Entity("ArrangementArrangementGroup", b =>
-                {
-                    b.Property<int>("ArrangementsGroupArrangementGroupID")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("ArrangementsArrangementID")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("ArrangementsTravelCompanyID")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("ArrangementsTravelPlaceID")
-                        .HasColumnType("integer");
-
-                    b.HasKey("ArrangementsGroupArrangementGroupID", "ArrangementsArrangementID", "ArrangementsTravelCompanyID", "ArrangementsTravelPlaceID");
-
-                    b.HasIndex("ArrangementsArrangementID", "ArrangementsTravelCompanyID", "ArrangementsTravelPlaceID");
-
-                    b.ToTable("ArrangementArrangementGroup");
-                });
 
             modelBuilder.Entity("Models.Arrangement", b =>
                 {
@@ -460,7 +441,7 @@ namespace Models.Migrations
                         },
                         new
                         {
-                            ArrangementID = 33,
+                            ArrangementID = 29,
                             TravelCompanyID = 6,
                             TravelPlaceID = 17,
                             DateEnd = new DateTime(2022, 9, 21, 12, 0, 0, 0, DateTimeKind.Unspecified),
@@ -472,7 +453,7 @@ namespace Models.Migrations
                         },
                         new
                         {
-                            ArrangementID = 34,
+                            ArrangementID = 30,
                             TravelCompanyID = 7,
                             TravelPlaceID = 17,
                             DateEnd = new DateTime(2022, 9, 24, 12, 0, 0, 0, DateTimeKind.Unspecified),
@@ -970,21 +951,6 @@ namespace Models.Migrations
                             UserID = 2,
                             RoleID = 1
                         });
-                });
-
-            modelBuilder.Entity("ArrangementArrangementGroup", b =>
-                {
-                    b.HasOne("Models.ArrangementGroup", null)
-                        .WithMany()
-                        .HasForeignKey("ArrangementsGroupArrangementGroupID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Models.Arrangement", null)
-                        .WithMany()
-                        .HasForeignKey("ArrangementsArrangementID", "ArrangementsTravelCompanyID", "ArrangementsTravelPlaceID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Models.Arrangement", b =>

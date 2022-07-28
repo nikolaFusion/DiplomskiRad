@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Models.Context;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -12,9 +13,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Models.Migrations
 {
     [DbContext(typeof(EntityContext))]
-    partial class EntityContextModelSnapshot : ModelSnapshot
+    [Migration("20220728120047_ConntectedArrGroupWithArr")]
+    partial class ConntectedArrGroupWithArr
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -460,7 +462,7 @@ namespace Models.Migrations
                         },
                         new
                         {
-                            ArrangementID = 33,
+                            ArrangementID = 29,
                             TravelCompanyID = 6,
                             TravelPlaceID = 17,
                             DateEnd = new DateTime(2022, 9, 21, 12, 0, 0, 0, DateTimeKind.Unspecified),
@@ -472,7 +474,7 @@ namespace Models.Migrations
                         },
                         new
                         {
-                            ArrangementID = 34,
+                            ArrangementID = 30,
                             TravelCompanyID = 7,
                             TravelPlaceID = 17,
                             DateEnd = new DateTime(2022, 9, 24, 12, 0, 0, 0, DateTimeKind.Unspecified),

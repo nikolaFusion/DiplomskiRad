@@ -12,5 +12,6 @@ namespace Repositories.Interfaces
         Task<List<IArrangement>> GetBeforeEndDate(int place, DateTime startDate, DateTime? endDate, int numberOfPeople,bool last);
         Task<List<IArrangement>> FindByFilter(int iD, int numberOfPlace, DateTime startDate, DateTime endDate, double downPrice, double upPrice);
         Task<List<IArrangement>> FindAllByPlaceId(int idTravelPlace);
+        Task<IArrangement> GetByID(int id);
     }
 }

@@ -70,5 +70,14 @@ namespace Repositories
             return result.ToList<IArrangement>();
         }
 
+        public async Task<IArrangement> GetByID(int id)
+        {
+            var result = await _context.Arrangements.Where(x => x.ArrangementID == id)
+                                                     .Include(x=>x.TravelPlace)
+                                                     .Include(x=>x.TravelCompany)
+                                                     .SingleOrDefaultAsync();
+
+            return result;
+        }
     }
 }

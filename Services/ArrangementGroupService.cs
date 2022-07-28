@@ -17,13 +17,16 @@ namespace Services
     {
         private readonly IRepositoryArranegementGroup _arrangementGroupRepo;
         private readonly IRepositoryUserArrangementGroup _userArrangementGroupRepo;
+        private readonly IRepositoryArrangment _arrangementRepo;
         private readonly IMapper _mapper;
 
         public ArrangementGroupService(IRepositoryArranegementGroup arrangementGroupRepo,
                                         IRepositoryUserArrangementGroup userArrangementGroupRepo,
+                                        IRepositoryArrangment arrangementRepo,
                                         IMapper mapper)
         {
             _mapper = mapper;
+            _arrangementRepo = arrangementRepo;
             _userArrangementGroupRepo = userArrangementGroupRepo;
             _arrangementGroupRepo = arrangementGroupRepo;
         }
@@ -90,11 +93,33 @@ namespace Services
                 throw new BadRequestError("Invalid token");
             }
 
-            var arrListGr = await _userArrangementGroupRepo.GetByUserId(id);
+            var r = await _userArrangementGroupRepo.GetByUserId(id);
 
-            var result = arrListGr.Select(x => x.ArrangementGroup).ToList();
+            var result = r.Select(x => x.ArrangementGroup).ToList();
 
-            return result;
+            var newResult = result.Select(x => new ArrangementGroup(x)).ToList();
+
+            var returnValue = new List<ArrangementGroup>();
+
+            foreach(var item in newResult)
+            {
+                ArrangementGroup arr = new ArrangementGroup();
+
+                arr.Price= item.Price;
+                arr.ArrangementsIDs = item.ArrangementsIDs;
+                arr.ArrangementGroupID = item.ArrangementGroupID;
+                arr.Arrangements = new List<Arrangement>();
+
+                foreach(var i in arr.ArrangementsIDs)
+                {
+                    var arrangement = await _arrangementRepo.GetByID(i);
+                    arr.Arrangements.Add(new Arrangement(arrangement));
+                }
+
+                returnValue.Add(arr);
+            }
+
+            return returnValue.ToList<IArrangementGroup>();
         }
 
         public async Task<bool> Save( double price, string userID,List<int> arrangementsIDs)

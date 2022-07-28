@@ -9,7 +9,7 @@ using Utils.Interfaces;
 
 namespace Models
 {
-    public class ArrangementGroup:IArrangementGroup
+    public class ArrangementGroup : IArrangementGroup
     {
         [Key]
         [Required]
@@ -23,7 +23,10 @@ namespace Models
         [NotMapped]
         public List<Arrangement> Arrangements { get; set; }
 
+
+        [NotMapped]
         List<IArrangement> IArrangementGroup.Arrangements => Arrangements.ToList<IArrangement>();
+
 
         public ArrangementGroup()
         {

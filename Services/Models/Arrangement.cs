@@ -25,5 +25,24 @@ namespace Services.Models
         public ITravelCompany TravelCompany { get; set; }
 
         public IArrangementGroup ArrangementGroup { get; set; }
+
+        public Arrangement(IArrangement arrangement)
+        {
+            ArrangementID = arrangement.ArrangementID;
+            TravelCompanyID = arrangement.TravelCompanyID;
+            TravelPlaceID = arrangement.TravelPlaceID;
+            DateEnd = arrangement.DateEnd;
+            DateStart = arrangement.DateStart;
+            Price = arrangement.Price;
+            SeatsInArrangement = arrangement.SeatsInArrangement;
+            OnlyAirplaneTicket = arrangement.OnlyAirplaneTicket;
+            StartPlaceID = arrangement.StartPlaceID;
+            TravelPlace = arrangement.TravelPlace;
+            TravelCompany = arrangement.TravelCompany;
+        }
+
+        public Arrangement()
+        {
+        }
     }
 }

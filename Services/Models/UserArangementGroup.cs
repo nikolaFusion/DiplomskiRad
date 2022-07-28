@@ -13,8 +13,10 @@ namespace Services.Models
         public int ArrangementGroupID { get; set; }
         public int UserID { get; set; }
 
-        public IArrangementGroup ArrangementGroup => null;
+
 
         public IUser User => null;
+
+        public IArrangementGroup ArrangementGroup =>null;
     }
 }
