@@ -1,10 +1,5 @@
 ﻿using Repositories.Interfaces;
 using Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Utils.ErrorModels;
 using Utils.Interfaces;
 
@@ -13,7 +8,7 @@ namespace Services
     public class TravelPlacesService : ITravelPlacesService
     {
         private readonly IRepositoryTravelPlaces _repoTravelPlace;
-        public TravelPlacesService( IRepositoryTravelPlaces repoTravelPlace)
+        public TravelPlacesService(IRepositoryTravelPlaces repoTravelPlace)
         {
             _repoTravelPlace = repoTravelPlace;
         }
@@ -24,7 +19,7 @@ namespace Services
 
             try
             {
-                if(!Int32.TryParse(id, out idNum))
+                if (!Int32.TryParse(id, out idNum))
                 {
                     throw new BadRequestError($"This id:{id} is not number");
                 }
@@ -40,9 +35,9 @@ namespace Services
 
         public async Task<List<ITravelPlace>> FindByValue(string searchValue)
         {
-            if(searchValue == null)
+            if (searchValue == null)
             {
-                var list = await GetAll();
+                var list = await GetAllTravelPlace();
 
             }
 
@@ -57,7 +52,7 @@ namespace Services
             }
         }
 
-        public async Task<List<ITravelPlace>> GetAll()
+        public async Task<List<ITravelPlace>> GetAllTravelPlace()
         {
             try
             {

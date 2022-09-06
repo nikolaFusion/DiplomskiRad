@@ -1,9 +1,6 @@
 ﻿using DTOs;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Services.Interfaces;
-using Utils.Interfaces;
 
 namespace DiplomskiRad.Controllers
 {
@@ -22,7 +19,7 @@ namespace DiplomskiRad.Controllers
         [HttpGet]
         public async Task<ActionResult<List<TravelPlacesDto>>> GetAll()
         {
-            var result = await _travelService.GetAll();
+            var result = await _travelService.GetAllTravelPlace();
 
             var list = result.Select(x => new TravelPlacesDto(x)).ToList();
 
