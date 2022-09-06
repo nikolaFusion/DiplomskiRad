@@ -2,11 +2,6 @@
 using Repositories.Interfaces;
 using Services.Interfaces;
 using Services.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Transactions;
 using Utils.ErrorModels;
 using Utils.Interfaces;
@@ -34,7 +29,7 @@ namespace Services
         {
             int id;
 
-            bool succesfullParse=Int32.TryParse(userID, out id);
+            bool succesfullParse = Int32.TryParse(userID, out id);
 
             if (!succesfullParse)
             {
@@ -65,11 +60,11 @@ namespace Services
                 try
                 {
 
-                    await _userArrangementGroupRepo.Delete(id, idArrGroup);
+                    await _userArrangementGroupRepo.DeleteUserArr(id, idArrGroup);
 
-                    await _arrangementGroupRepo.Delete(idArrGroup);
+                    await _arrangementGroupRepo.DeleteArrGroup(idArrGroup);
 
-                    
+
                     scope.Complete();
                 }
 
@@ -101,16 +96,16 @@ namespace Services
 
             var returnValue = new List<ArrangementGroup>();
 
-            foreach(var item in newResult)
+            foreach (var item in newResult)
             {
                 ArrangementGroup arr = new ArrangementGroup();
 
-                arr.Price= item.Price;
+                arr.Price = item.Price;
                 arr.ArrangementsIDs = item.ArrangementsIDs;
                 arr.ArrangementGroupID = item.ArrangementGroupID;
                 arr.Arrangements = new List<Arrangement>();
 
-                foreach(var i in arr.ArrangementsIDs)
+                foreach (var i in arr.ArrangementsIDs)
                 {
                     var arrangement = await _arrangementRepo.GetByID(i);
                     arr.Arrangements.Add(new Arrangement(arrangement));
@@ -122,7 +117,7 @@ namespace Services
             return returnValue.ToList<IArrangementGroup>();
         }
 
-        public async Task<bool> Save( double price, string userID,List<int> arrangementsIDs)
+        public async Task<bool> Save(double price, string userID, List<int> arrangementsIDs)
         {
             int id;
 
@@ -133,7 +128,7 @@ namespace Services
                 throw new BadRequestError("Invalid token");
             }
 
-            var arrangementGroupID = await _arrangementGroupRepo.GetLastID()+1;
+            var arrangementGroupID = await _arrangementGroupRepo.GetLastID() + 1;
 
             using (TransactionScope scope = new TransactionScope(TransactionScopeOption.RequiresNew, TransactionScopeAsyncFlowOption.Enabled))
             {
@@ -145,16 +140,16 @@ namespace Services
                         ArrangementsIDs = arrangementsIDs,
                         Price = price,
                         Arrangements = new List<Arrangement>()
-                     };
+                    };
 
-                    await _arrangementGroupRepo.Save(arrGroup);
+                    await _arrangementGroupRepo.SaveArrGroup(arrGroup);
 
                     UserArangementGroup userArrGroup = new UserArangementGroup
                     {
                         UserID = id,
                         ArrangementGroupID = arrangementGroupID
                     };
-                    await _userArrangementGroupRepo.Save(userArrGroup);
+                    await _userArrangementGroupRepo.SaveUserArrGroup(userArrGroup);
                     scope.Complete();
                 }
 
