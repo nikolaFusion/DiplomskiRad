@@ -1,16 +1,9 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Utils.Interfaces;
 
 namespace Models.Context
 {
-    public class EntityContext:DbContext
+    public class EntityContext : DbContext
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
@@ -81,7 +74,7 @@ namespace Models.Context
                 .HasKey(x => x.TravelPlaceID);
 
             modelBuilder.Entity<Arrangement>()
-                .HasKey(x =>new { x.ArrangementID,x.TravelCompanyID,x.TravelPlaceID });
+                .HasKey(x => new { x.ArrangementID });
 
             modelBuilder.Entity<TravelCompany>()
              .HasMany(x => x.Arrangements)
@@ -114,8 +107,8 @@ namespace Models.Context
 
         public static void InsertDataInTable(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().HasData(new User { UserID = 1, FirstName = "Nikola", LastName = "Golubovic", Age = 23, Username="nikola", Password="nikola" },
-                                                new User { UserID = 2, FirstName = "Nenad", LastName = "Golubovic", Age = 23, Username="nenad", Password="nenad" });
+            modelBuilder.Entity<User>().HasData(new User { UserID = 1, FirstName = "Nikola", LastName = "Golubovic", Age = 23, Username = "nikola", Password = "nikola" },
+                                                new User { UserID = 2, FirstName = "Nenad", LastName = "Golubovic", Age = 23, Username = "nenad", Password = "nenad" });
 
             modelBuilder.Entity<Role>().HasData(new Role { RoleID = 1, Name = "Administrator" },
                                                 new Role { RoleID = 2, Name = "User" });
@@ -142,7 +135,7 @@ namespace Models.Context
                                                          new TravelCompany { TravelCompanyID = 6, Name = "Travel Leaders Group", ImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpPcnJXpBYR9oWJNGY8Y61X4dMaHZbuPZ8ab8GOeTTjCDsXX9afgWFFrhSzqm9707ati8&usqp=CAU" },
                                                          new TravelCompany { TravelCompanyID = 7, Name = "American Express", ImageUrl = "https://cdn.travelpulse.com/images/bd2ed357-9adc-bb59-4f8f-1e08b5932b51/0b77cb8d-aa17-4bd4-b861-bebe0b369269/500x309.jpg" });
 
-            modelBuilder.Entity<TravelPlace>().HasData(new TravelPlace { TravelPlaceID = 1, Name = "Kopaonik - Skiing", Country = "Serbia",ImageUrl= "https://www.infokop.net/mambots/content/multithumb/images/b.800.600.0.1.stories.vesti.2019.zima.ski-opening-2018.jpg", Description= "Welcome to Kopaonik - a tourist destination that provides the best vacations. Here you will find everything you need to organize your stay on the mountain. Kopaonik has a lot to offer, so you need a reliable guide through its offer. Find quality accommodation units, choose restaurants with the most varied menu, discover which are the most attractive mountain facilities. Choose the options that best fit the image of your ideal vacation. Prepare to travel in the best way and provide yourself and your companions with the perfect mountain experience." },
+            modelBuilder.Entity<TravelPlace>().HasData(new TravelPlace { TravelPlaceID = 1, Name = "Kopaonik - Skiing", Country = "Serbia", ImageUrl = "https://www.infokop.net/mambots/content/multithumb/images/b.800.600.0.1.stories.vesti.2019.zima.ski-opening-2018.jpg", Description = "Welcome to Kopaonik - a tourist destination that provides the best vacations. Here you will find everything you need to organize your stay on the mountain. Kopaonik has a lot to offer, so you need a reliable guide through its offer. Find quality accommodation units, choose restaurants with the most varied menu, discover which are the most attractive mountain facilities. Choose the options that best fit the image of your ideal vacation. Prepare to travel in the best way and provide yourself and your companions with the perfect mountain experience." },
                                                        new TravelPlace { TravelPlaceID = 2, Name = "Paris - Museum", Country = "France", ImageUrl = "https://www.ceeh.es/wp-content/uploads/2021/06/b.jpg", Description = "There are over 150 museums in Paris, including some of the most-visited in the world. As a visitor, the real challenge is choosing the right museums for you, the ones that match your interests, needs, and time. Right now we're going to concentrate on the biggest and the best. Paris is very popular, and so are its museums. You likely will encounter long ticket line-ups at the top museums. If you know us, you'll know we hate standing in lines. So, we appreciate the benefits of the Paris Insiders Pass — a worthwhile tool both to save money and to skip the long lines." },
                                                        new TravelPlace { TravelPlaceID = 3, Name = "Iceland - Country of ice and fire", Country = "Iceland", ImageUrl = "https://www.telegraph.co.uk/content/dam/Travel/Destinations/Europe/Iceland/Reykjavik/reykjavik-guide-lead-image-48-hours-xlarge.jpg?imwidth=640", Description = "Iceland's nature is easily the highlight of the entire country. The island features glittering glacier lagoons, bubbling hot springs, and powerful waterfalls – illuminated each season by either the Northern Lights or the Midnight Sun. With its countless natural wonders, it's easy to see why Iceland has become one of the top travel destinations in the world. Below we have listed some of our favorite must-see destinations and must-do experiences that should be on every visitor's bucket list!" },
                                                        new TravelPlace { TravelPlaceID = 4, Name = "Canada - Nature", Country = "Canada", ImageUrl = "https://cdn.ceoworld.biz/wp-content/uploads/2022/04/Benefits-of-Holding-a-Canadia-Passport.jpg", Description = "The beauty of Canada from east to west is amazing and wonderfully scenic. Although the world is slowly going back to normal, there are however still some flight travels being restricted due to the COVID-19 pandemic. Don’t worry, there is always a good time for some of the best road trips in Canada. If you already live in Canada, you know that the country is worth exploring and full of fantastic nature destinations that attract millions of tourists and adventurers from all around the world. If you're coming from outside the country, then you want to make sure to get an international driver's license for Canada so that you can drive from coast to coast and visit every destination on your way. Now let’s check out some of the top nature travel destinations you must visit in Canada!" },
@@ -168,12 +161,12 @@ namespace Models.Context
             modelBuilder.Entity<Arrangement>().HasData(new Arrangement { ArrangementID = 1, TravelCompanyID = 2, TravelPlaceID = 4, DateStart = new DateTime(2022, 9, 19, 12, 0, 0), DateEnd = new DateTime(2022, 9, 21, 12, 0, 0), Price = 123.22, SeatsInArrangement = 10, OnlyAirplaneTicket = false },
                                                        new Arrangement { ArrangementID = 2, TravelCompanyID = 5, TravelPlaceID = 3, DateStart = new DateTime(2022, 9, 21, 17, 0, 0), DateEnd = new DateTime(2022, 9, 24, 12, 0, 0), Price = 117.99, SeatsInArrangement = 10, OnlyAirplaneTicket = false },
                                                        new Arrangement { ArrangementID = 3, TravelCompanyID = 1, TravelPlaceID = 5, DateStart = new DateTime(2022, 9, 24, 17, 0, 0), DateEnd = new DateTime(2022, 9, 27, 12, 0, 0), Price = 126.12, SeatsInArrangement = 10, OnlyAirplaneTicket = false },
-                                                       new Arrangement { ArrangementID = 4, TravelCompanyID = 6, TravelPlaceID = 21, DateStart = new DateTime(2022, 9, 27, 12, 0, 0), DateEnd = null, Price = 72.32, SeatsInArrangement = 10, OnlyAirplaneTicket = true }) ;
+                                                       new Arrangement { ArrangementID = 4, TravelCompanyID = 6, TravelPlaceID = 21, DateStart = new DateTime(2022, 9, 27, 12, 0, 0), DateEnd = null, Price = 72.32, SeatsInArrangement = 10, OnlyAirplaneTicket = true });
 
             modelBuilder.Entity<Arrangement>().HasData(new Arrangement { ArrangementID = 5, TravelCompanyID = 3, TravelPlaceID = 4, DateStart = new DateTime(2022, 9, 19, 12, 0, 0), DateEnd = new DateTime(2022, 9, 21, 12, 0, 0), Price = 223.22, SeatsInArrangement = 10, OnlyAirplaneTicket = false },
                                                       new Arrangement { ArrangementID = 6, TravelCompanyID = 2, TravelPlaceID = 3, DateStart = new DateTime(2022, 9, 21, 17, 0, 0), DateEnd = new DateTime(2022, 9, 24, 12, 0, 0), Price = 217.99, SeatsInArrangement = 10, OnlyAirplaneTicket = false },
                                                       new Arrangement { ArrangementID = 7, TravelCompanyID = 4, TravelPlaceID = 5, DateStart = new DateTime(2022, 9, 24, 17, 0, 0), DateEnd = new DateTime(2022, 9, 27, 12, 0, 0), Price = 226.12, SeatsInArrangement = 10, OnlyAirplaneTicket = false },
-                                                      new Arrangement { ArrangementID = 8, TravelCompanyID = 3, TravelPlaceID = 21, DateStart = new DateTime(2022, 9, 27, 12, 0, 0), DateEnd = null, Price =272.32, SeatsInArrangement = 10, OnlyAirplaneTicket = true });
+                                                      new Arrangement { ArrangementID = 8, TravelCompanyID = 3, TravelPlaceID = 21, DateStart = new DateTime(2022, 9, 27, 12, 0, 0), DateEnd = null, Price = 272.32, SeatsInArrangement = 10, OnlyAirplaneTicket = true });
 
             modelBuilder.Entity<Arrangement>().HasData(new Arrangement { ArrangementID = 9, TravelCompanyID = 1, TravelPlaceID = 1, DateStart = new DateTime(2022, 9, 19, 12, 0, 0), DateEnd = new DateTime(2022, 9, 21, 12, 0, 0), Price = 1212.12, SeatsInArrangement = 10, OnlyAirplaneTicket = false },
                                                       new Arrangement { ArrangementID = 10, TravelCompanyID = 2, TravelPlaceID = 2, DateStart = new DateTime(2022, 9, 21, 17, 0, 0), DateEnd = new DateTime(2022, 9, 24, 12, 0, 0), Price = 142.51, SeatsInArrangement = 10, OnlyAirplaneTicket = false },
@@ -199,7 +192,7 @@ namespace Models.Context
                                                       new Arrangement { ArrangementID = 26, TravelCompanyID = 6, TravelPlaceID = 21, DateStart = new DateTime(2022, 9, 21, 17, 0, 0), DateEnd = new DateTime(2022, 9, 24, 12, 0, 0), Price = 227.99, SeatsInArrangement = 10, OnlyAirplaneTicket = false },
                                                       new Arrangement { ArrangementID = 27, TravelCompanyID = 7, TravelPlaceID = 15, DateStart = new DateTime(2022, 9, 24, 17, 0, 0), DateEnd = new DateTime(2022, 9, 27, 12, 0, 0), Price = 426.12, SeatsInArrangement = 10, OnlyAirplaneTicket = false },
                                                       new Arrangement { ArrangementID = 28, TravelCompanyID = 1, TravelPlaceID = 14, DateStart = new DateTime(2022, 9, 27, 12, 0, 0), DateEnd = null, Price = 672.32, SeatsInArrangement = 10, OnlyAirplaneTicket = true });
-            
+
             modelBuilder.Entity<Arrangement>().HasData(new Arrangement { ArrangementID = 29, TravelCompanyID = 1, TravelPlaceID = 17, DateStart = new DateTime(2022, 9, 19, 12, 0, 0), DateEnd = new DateTime(2022, 9, 21, 12, 0, 0), Price = 213.22, SeatsInArrangement = 10, OnlyAirplaneTicket = false },
                                                      new Arrangement { ArrangementID = 30, TravelCompanyID = 3, TravelPlaceID = 17, DateStart = new DateTime(2022, 9, 21, 17, 0, 0), DateEnd = new DateTime(2022, 9, 24, 12, 0, 0), Price = 237.99, SeatsInArrangement = 10, OnlyAirplaneTicket = false },
                                                      new Arrangement { ArrangementID = 31, TravelCompanyID = 4, TravelPlaceID = 17, DateStart = new DateTime(2022, 9, 24, 17, 0, 0), DateEnd = new DateTime(2022, 9, 27, 12, 0, 0), Price = 426.12, SeatsInArrangement = 10, OnlyAirplaneTicket = false },
@@ -207,7 +200,7 @@ namespace Models.Context
 
             modelBuilder.Entity<Arrangement>().HasData(new Arrangement { ArrangementID = 33, TravelCompanyID = 6, TravelPlaceID = 17, DateStart = new DateTime(2022, 9, 19, 12, 0, 0), DateEnd = new DateTime(2022, 9, 21, 12, 0, 0), Price = 243.22, SeatsInArrangement = 10, OnlyAirplaneTicket = false },
                                          new Arrangement { ArrangementID = 34, TravelCompanyID = 7, TravelPlaceID = 17, DateStart = new DateTime(2022, 9, 21, 17, 0, 0), DateEnd = new DateTime(2022, 9, 24, 12, 0, 0), Price = 327.99, SeatsInArrangement = 10, OnlyAirplaneTicket = false });
-                                      
+
         }
     }
 }
