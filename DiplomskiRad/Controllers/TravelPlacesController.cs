@@ -17,7 +17,7 @@ namespace DiplomskiRad.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<TravelPlacesDto>>> GetAll()
+        public async Task<ActionResult<List<TravelPlacesDto>>> GetAllTravelPlace()
         {
             var result = await _travelService.GetAllTravelPlace();
 
